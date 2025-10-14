@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  explainer-api:
+    build: .
+    image: explainable-soc:latest
+    container_name: explainer-api
+    environment:
+      - OS_URL=${OS_URL}
+      - OS_USER=${OS_USER}
+      - OS_PASS=${OS_PASS}
+      - OS_VERIFY_TLS=${OS_VERIFY_TLS:-true}
+      - EXPLAIN_INDEX=${EXPLAIN_INDEX:-wazuh-explain-v1}
+      - FEEDBACK_INDEX=${FEEDBACK_INDEX:-wazuh-explain-feedback-v1}
+      - FEATURE_MAP_PATH=/app/feature_map.yaml
+      - MODEL_PATH=/app/model.joblib
+      - EXPLAINER_BACKEND=${EXPLAINER_BACKEND:-shap}
+      - TOP_K_FEATURES=${TOP_K_FEATURES:-8}
+    volumes:
+      - ./src/model_api/model.joblib:/app/model.joblib:ro
+      - ./src/model_api/feature_map.yaml:/app/feature_map.yaml:ro
+    ports:
+      - "8989:8989"
+    restart: unless-stopped

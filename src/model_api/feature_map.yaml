@@ -1,0 +1,26 @@
+# maps alerrt JSON fields -> model features
+# Use JMESPath-like dotted paths; implement extraction accordingly
+# See https://jmespath.org/tutorial.html for reference
+
+features:
+  - name: src_geo_risk
+    path: data.geoip.src.risk_score
+    default: 0
+  - name: dst_geo_risk
+    path: data.geoip.dst.risk_score
+    default: 0
+  - name: src_port
+    path: data.srcport
+    default: 0
+  - name: dst_port
+    path: data.dstport
+    default: 0
+  - name: event_code
+    path: win.event.code
+    default: 0
+  - name: auth_failures_5m
+    path: enrich.auth_fail_5m
+    default: 0
+  - name: user_risk
+    path: enrich.user.risk
+    default: 0

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 180, "height": 120, "padding": 5,
+  "data": [
+    {
+      "name": "score",
+      "url": {
+        "%context%": true,
+        "%timefield%": "@timestamp",
+        "index": "wazuh-explain-v1",
+        "body": { "size": 1, "query": { "bool": { "filter": [ { "match_all": {} } ] } }, "_source": ["score"] }
+      },
+      "format": {"property":"hits.hits[0]._source.score"}
+    }
+  ],
+  "signals": [
+    {"name":"val","update":"data('score')[0] || 0"}
+  ],
+  "marks": [
+    {
+      "type":"arc",
+      "encode": {
+        "enter": {
+          "x":{"value":90}, "y":{"value":100}, "innerRadius":{"value":40}, "outerRadius":{"value":70},
+          "startAngle":{"value":-3.14159}, "endAngle":{"value":0}, "fill":{"value":"#e5e7eb"}
+        }
+      }
+    },
+    {
+      "type":"arc",
+      "encode": {
+        "enter": {
+          "x":{"value":90}, "y":{"value":100}, "innerRadius":{"value":40}, "outerRadius":{"value":70},
+          "startAngle":{"value":-3.14159}, "endAngle":{"signal":"-3.14159 + val*3.14159"}, "fill":{"value":"#10b981"}
+        }
+      }
+    },
+    {
+      "type":"text",
+      "encode": { "enter": {
+        "x":{"value":90}, "y":{"value":100}, "text":{"signal":"format(val, '.3f')"}, "align":{"value":"center"}, "baseline":{"value":"middle"}, "fontSize":{"value":18}
+      } }
+    }
+  ]
+}

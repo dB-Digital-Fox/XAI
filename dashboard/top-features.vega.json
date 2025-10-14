@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 380, "height": 220, "padding": 5,
+  "data": [
+    {
+      "name": "raw",
+      "url": {
+        "%context%": true,
+        "%timefield%": "@timestamp",
+        "index": "wazuh-explain-v1",
+        "body": {
+          "size": 0,
+          "query": { "bool": { "filter": [ { "match_all": {} } ] } },
+          "aggs": {
+            "feat": {
+              "nested": { "path": "top_features" },
+              "aggs": {
+                "by_feat": {
+                  "terms": { "field": "top_features.feature", "size": 15 },
+                  "aggs": { "impact": { "sum": { "field": "top_features.contribution" } } }
+                }
+              }
+            }
+          }
+        }
+      },
+      "format": { "property": "aggregations.feat.by_feat.buckets" }
+    },
+    {
+      "name": "features",
+      "transform": [
+        { "type": "formula", "as": "feature", "expr": "datum.key" },
+        { "type": "formula", "as": "contribution", "expr": "datum.impact.value" },
+        { "type": "collect", "sort": {"field": "contribution", "order": "descending"} }
+      ]
+    }
+  ],
+  "scales": [
+    { "name": "y", "type": "band", "domain": {"data":"features","field":"feature"}, "range":"height", "padding":0.2 },
+    { "name": "x", "type": "linear", "domain": {"data":"features","field":"contribution"}, "nice": true, "range": "width" }
+  ],
+  "axes": [
+    { "orient": "left", "scale": "y" },
+    { "orient": "bottom", "scale": "x", "title": "Contribution (±)" }
+  ],
+  "marks": [
+    {
+      "type": "rect",
+      "from": {"data":"features"},
+      "encode": {
+        "enter": {
+          "y": {"scale":"y", "field":"feature"},
+          "height": {"scale":"y","band":1},
+          "x": {"scale":"x","value":0},
+          "x2": {"scale":"x","field":"contribution"}
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {"data":"features"},
+      "encode": {
+        "enter": {
+          "y": {"scale":"y", "field":"feature", "band":0.5},
+          "x": {"scale":"x", "field":"contribution", "offset": 6},
+          "baseline": {"value":"middle"},
+          "text": {"signal":"format(datum.contribution, '.3f')"}
+        }
+      }
+    }
+  ]
+}
