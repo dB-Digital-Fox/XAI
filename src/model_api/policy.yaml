@@ -1,0 +1,58 @@
+# src/model_api/policy.yaml
+thresholds:
+  critical: 0.90
+  high:     0.75
+  medium:   0.55
+  low:      0.35
+
+# Tiny rule DSL:
+#   Ops: ==, >=, <=, >, <, in [..]
+#   Left side is a dotted path into the alert; right is number/string/list
+#   Optional keys per rule:
+#     - escalate_to: info|low|medium|high|critical
+#     - bump: float (0..1) added to model score before bucketing
+#     - reason / add_reason: strings (use #{path} to interpolate values)
+#     - recommendations: [list of strings]
+rules:
+  - when: "win.event.code == 4625"
+    add_reason: "Windows failed logon event (4625)"
+
+  - when: "data.dstport in [22,3389,445]"
+    add_reason: "Sensitive service targeted (#{data.dstport})"
+
+  - when: "enrich.auth_fail_5m >= 20"
+    escalate_to: "critical"
+    reason: "Burst of failed logins in 5m (#{enrich.auth_fail_5m})"
+
+  - when: "enrich.user.risk >= 0.8"
+    add_reason: "User risk ≥ 0.8"
+    bump: 0.07
+
+  - when: "data.geoip.src.risk_score >= 8"
+    add_reason: "High source geo risk (#{data.geoip.src.risk_score})"
+    bump: 0.05
+
+  - when: "evidence.len >= 5"
+    add_reason: "Multiple corroborating events (#{evidence.len})"
+
+triage_text:
+  critical: "CRITICAL — immediate response; block source and contain."
+  high:     "High — respond within SLA; validate and contain."
+  medium:   "Medium — correlate before action."
+  low:      "Low — monitor."
+  info:     "Informational — no action."
+
+recommendations:
+  critical:
+    - "Block/geo-fence offending IP range"
+    - "Reset credentials / enforce MFA"
+    - "Hunt for lateral movement (last 24h)"
+  high:
+    - "Isolate host if IOC confirmed"
+    - "Create incident with evidence attachments"
+  medium:
+    - "Link with IDS/EDR signals; schedule review"
+  low:
+    - "Auto-close after 24h if no recurrence"
+  info:
+    - "No action"

@@ -5,6 +5,10 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from .util_explain import Explainer
 from ..common.opensearch_client import OSClient
+from .policy import Policy
+
+POLICY_PATH = os.environ.get("POLICY_PATH", "/app/src/model_api/policy.yaml")
+policy = Policy(POLICY_PATH)
 
 EXPLAIN_INDEX = os.environ.get("EXPLAIN_INDEX", "wazuh-explain-v1")
 FEEDBACK_INDEX = os.environ.get("FEEDBACK_INDEX", "wazuh-explain-feedback-v1")
@@ -38,9 +42,28 @@ EXPLAIN_MAPPING = {
       "ts":{"type":"date"},
       "type":{"type":"keyword"},
       "snippet":{"type":"text"}}},
-    "raw_hash":{"type":"keyword"}
+    "raw_hash":{"type":"keyword"},
+
+    "criticality": {
+      "properties": {
+        "tag": {"type":"keyword"},
+        "score": {"type":"float"},
+        "reasons": {"type":"keyword"},
+        "triage_text": {"type":"text"},
+        "recommendations": {"type":"keyword"}
+      }
+    },
+    "health": {
+      "properties": {
+        "feature_coverage_pct":{"type":"float"},
+        "missing_features":{"type":"keyword"},
+        "model_staleness_days":{"type":"integer"},
+        "pipeline_ok":{"type":"boolean"}
+      }
+    }
   }
 }
+
 FEEDBACK_MAPPING = {
   "properties": {
     "alert_id":{"type":"keyword"},
@@ -67,10 +90,25 @@ def score_explain(body: ScoreExplainIn):
         exp = explainer.explain(body.alert)
     except Exception as e:
         raise HTTPException(400, f"Explain error: {e}")
+    # Build a simple "feature used" mask: non-default means "used"
+    feature_names = explainer.feature_names
+    vals = explainer.xform(body.alert)
+    defaults = [f.get("default", 0) for f in explainer.feature_defs]
+    used_mask = [bool(v != d and v is not None) for v, d in zip(vals, defaults)]
+
+    # Apply policy to get criticality + health
+    pol = policy.decide(
+        score=exp["score"],
+        alert=body.alert,
+        feature_used_mask=used_mask,
+        feature_names=feature_names,
+        model_path=os.environ.get("MODEL_PATH", "/app/src/model_api/model.joblib")
+    )
     doc = {
         "alert_id": body.alert_id,
         "@timestamp": body.alert.get("@timestamp"),
         **exp,
+        **pol, 
         "raw_hash": str(abs(hash(str(body.alert))))
     }
     r = osc.index_doc(EXPLAIN_INDEX, doc, doc_id=f"{body.alert_id}")
