@@ -2,8 +2,26 @@
 .venv/
 
 # Keep folders but ignore contents
-outputs/*
+outputs/**
 !outputs/.gitkeep
 
-parts/*
-!parts/.gitkeep
+parts/**
+!parts/.gitkeep# Virtual environment
+.venv/
+
+# Keep folder names but ignore everything inside except .gitkeep
+/outputs/**
+!/outputs/.gitkeep
+!/outputs/**/
+
+/parts/**
+!/parts/.gitkeep
+!/parts/**/# Virtual environment
+.venv/
+
+# Keep folder names but ignore everything inside except .gitkeep
+/data/outputs/**
+!/data/outputs/.gitkeep
+
+/data/parts/**
+!/data/parts/.gitkeep

@@ -52,3 +52,4 @@ def feedback(body: FeedbackIn):
 @app.get("/metrics")
 def metrics():
     return feedback_mgr.metrics()
+
