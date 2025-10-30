@@ -1,0 +1,28 @@
+{
+  "alert_id": "A-TEST-AP-2",
+  "alert": {
+    "@timestamp": "2025-10-28T00:00:03.140+0100",
+    "timestamp": "2025-10-28T00:00:03.140+0100",
+
+    "agent": { "id": "000", "name": "wazuh.fiit.stuba.sk.novalocal" },
+    "manager": { "name": "wazuh.fiit.stuba.sk.novalocal" },
+    "id": "1761606003.746013",
+    "full_log": "Oct 28 00:00:02 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.174 with drt status 0",
+    "predecoder": { "program_name": "AP", "timestamp": "Oct 28 00:00:02", "hostname": "10.0.219.11" },
+    "decoder": {},
+    "location": "127.0.0.1",
+
+    "rule": { "id": 900001, "level": 2, "description": "Test AP log" },
+    "data": {
+      "srcip": "10.0.219.11",
+      "dstip": "10.0.219.174",
+      "service": "AP",
+      "proto": "udp",
+      "srccountry": "SK",
+      "dstcountry": "SK",
+      "dstport": 514
+    },
+    "win": {},
+    "enrich": { "auth_fail_5m": 0, "user": { "risk": 0.1 } }
+  }
+}

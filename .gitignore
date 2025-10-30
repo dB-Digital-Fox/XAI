@@ -1,0 +1,9 @@
+# Virtual environment
+.venv/
+
+# Keep folders but ignore contents
+outputs/*
+!outputs/.gitkeep
+
+parts/*
+!parts/.gitkeep

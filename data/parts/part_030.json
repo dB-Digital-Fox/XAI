@@ -1,0 +1,1908 @@
+[
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.53 AP:AP53 <10.0.219.53 54:D7:E3:CA:EE:12> sapd[5347]: sapd_esl_usb_link_monitor_timeout: ESL-Radio not plugged. ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.53"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 stm[5354]: <501093> <NOTI> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  Auth success: 56:a2:a5:27:ff:15: AP 10.0.219.66-54:d7:e3:2a:b7:31-AP66",
+    "predecoder": {
+      "program_name": "stm",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {
+      "name": "aruba_ap_syslog"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: stm_update_sap_num_client:26282, bssid 54:d7:e3:2a:b7:31, num_client 3 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 stm[5354]: <501095> <NOTI> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  Assoc request @ 00:01:41.051935: 56:a2:a5:27:ff:15 (SN 2411): AP 10.0.219.66-54:d7:e3:2a:b7:31-AP66",
+    "predecoder": {
+      "program_name": "stm",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {
+      "name": "aruba_ap_syslog"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 stm[5354]: <501100> <NOTI> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  Assoc success @ 00:01:41.052773: 56:a2:a5:27:ff:15: AP 10.0.219.66-54:d7:e3:2a:b7:31-AP66",
+    "predecoder": {
+      "program_name": "stm",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {
+      "name": "aruba_ap_syslog"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> cli[5328]: AP 127.0.0.1, vap 54:d7:e3:2a:b7:31, num_client 3 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 cli[5328]: <541004> <WARN> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  recv_sta_online: receive station msg, mac-56:a2:a5:27:ff:15 bssid-54:d7:e3:2a:b7:31 essid-eduroam timestamp-1761606101-53573.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> cli[5328]: Backup roaming info: bssid: 54:d7:e3:2a:b7:31, snr: 33, rssi: 65, channel: 36+, auth time: 1761604037",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> sapd[5347]: sapd_proc_stm_reset_key: Got STM Reset key bss=54:d7:e3:2a:b7:31 mac=56:a2:a5:27:ff:15, idx=0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.154 AP:AP054 <10.0.219.154 54:D7:E3:CA:E8:9C> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.154"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.131 AP:AP031 <10.0.219.131 54:D7:E3:CA:E9:28> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.131"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.186 AP:AP70 <10.0.219.186 54:D7:E3:CA:D1:04> cli[5353]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.186"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.24 AP:AP24 <10.0.219.24 54:D7:E3:CB:03:C8> cli[5323]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.24"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.35 AP:AP35 <10.0.219.35 54:D7:E3:CA:B5:FA> cli[5323]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.35"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.132 AP:AP032 <10.0.219.132 54:D7:E3:CA:AB:1E> cli[5420]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.132"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.136 AP:AP036 <10.0.219.136 54:D7:E3:CA:9D:96> cli[5343]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.136"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.65 AP:AP65 <10.0.219.65 54:D7:E3:CB:16:78> cli[5328]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.65"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.61 AP:AP61 <10.0.219.61 54:D7:E3:CA:A4:FE> cli[5321]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.61"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.64 AP:AP64 <10.0.219.64 54:D7:E3:CA:F6:4C> cli[5328]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.64"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.158 AP:AP058 <10.0.219.158 54:D7:E3:CB:0D:22> cli[5420]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.158"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.16 AP:AP16 <10.0.219.16 54:D7:E3:CA:E5:60> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.16"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.178 AP:AP078 <10.0.219.178 54:D7:E3:CA:FE:04> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.178"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.41 AP:AP41 <10.0.219.41 54:D7:E3:CA:AF:BC> cli[5239]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.41"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.174 AP:AP074 <10.0.219.174 A8:5B:F7:CA:0C:B8> cli[5618]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.174"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.124 AP:AP024 <10.0.219.124 A8:5B:F7:CA:20:2E> cli[5529]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.124"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.138 AP:AP038 <10.0.219.138 54:D7:E3:CA:BD:84> cli[5342]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.138"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.176 AP:AP076 <10.0.219.176 54:D7:E3:CA:FB:4C> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.176"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.123 AP:AP023 <10.0.219.123 A8:5B:F7:CA:22:CC> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.123"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.56 AP:AP56 <10.0.219.56 54:D7:E3:CB:19:56> cli[5323]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.56"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.45 AP:AP45 <10.0.219.45 54:D7:E3:CB:00:D4> cli[5323]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.45"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.151 AP:AP051 <10.0.219.151 54:D7:E3:CA:DC:20> cli[5422]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.151"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.121 AP:AP021 <10.0.219.121 A8:5B:F7:CA:1C:98> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.121"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.117 AP:AP017 <10.0.219.117 A8:5B:F7:CA:0C:58> cli[5523]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.117"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.111 AP:AP011 <10.0.219.111 A8:5B:F7:CA:24:9A> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.111"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.15 AP:AP15 <10.0.219.15 54:D7:E3:CA:A5:96> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.15"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.62 AP:AP62 <10.0.219.62 54:D7:E3:CB:07:C6> cli[5322]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.62"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.36 AP:AP36 <10.0.219.36 54:D7:E3:CA:F6:20> cli[5328]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.36"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.175 AP:AP075 <10.0.219.175 A8:5B:F7:CA:0F:CA> cli[5620]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.175"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.21 AP:AP21 <10.0.219.21 54:D7:E3:CA:BC:4A> cli[5239]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.21"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.13 AP:AP13 <10.0.219.13 54:D7:E3:CA:B6:4A> cli[5250]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.13"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.134 AP:AP034 <10.0.219.134 54:D7:E3:CA:B0:16> cli[5422]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.134"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.122 AP:AP022 <10.0.219.122 A8:5B:F7:CA:1F:E2> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.122"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.135 AP:AP035 <10.0.219.135 54:D7:E3:CA:E2:56> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.135"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.26 AP:AP26 <10.0.219.26 54:D7:E3:CB:0C:8C> cli[5327]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.26"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.42 AP:AP42 <10.0.219.42 54:D7:E3:CA:EA:04> cli[5245]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.42"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.113 AP:AP013 <10.0.219.113 A8:5B:F7:CA:0A:3E> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.113"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.150 AP:AP050 <10.0.219.150 54:D7:E3:CA:F4:90> cli[5342]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.150"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.22 AP:AP22 <10.0.219.22 54:D7:E3:CA:E9:B4> cli[5249]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.22"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.139 AP:AP039 <10.0.219.139 54:D7:E3:CA:CD:A2> cli[5344]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.139"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.14 AP:AP14 <10.0.219.14 54:D7:E3:CA:C4:98> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.14"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.152 AP:AP052 <10.0.219.152 54:D7:E3:CA:C2:CA> cli[5422]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.152"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.63 AP:AP63 <10.0.219.63 54:D7:E3:CA:A8:98> cli[5322]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.63"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.23 AP:AP23 <10.0.219.23 54:D7:E3:CA:C4:1E> cli[5243]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.23"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.173 AP:AP073 <10.0.219.173 A8:5B:F7:CA:1C:FC> cli[5618]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.173"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.112 AP:AP012 <10.0.219.112 A8:5B:F7:CA:26:20> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.112"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.115 AP:AP015 <10.0.219.115 A8:5B:F7:CA:12:E2> cli[5529]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.115"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.114 AP:AP014 <10.0.219.114 A8:5B:F7:CA:0A:5E> cli[5523]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.114"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.46 AP:AP46 <10.0.219.46 54:D7:E3:CA:D6:B4> cli[5322]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.46"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.51 AP:AP51 <10.0.219.51 54:D7:E3:CA:D1:6E> cli[5322]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.51"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.137 AP:AP037 <10.0.219.137 54:D7:E3:CA:BA:68> cli[5343]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.137"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.33 AP:AP33 <10.0.219.33 54:D7:E3:CB:0B:14> cli[5249]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.33"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.55 AP:AP55 <10.0.219.55 54:D7:E3:CA:E9:2C> cli[5329]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.55"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.25 AP:AP25 <10.0.219.25 54:D7:E3:CB:0C:22> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.25"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.172 AP:AP072 <10.0.219.172 A8:5B:F7:CA:19:DA> cli[5528]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.172"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.44 AP:AP44 <10.0.219.44 54:D7:E3:CA:EC:1C> cli[5328]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.44"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.54 AP:AP54 <10.0.219.54 54:D7:E3:CA:B4:DA> cli[5323]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.54"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.177 AP:AP077 <10.0.219.177 54:D7:E3:CA:BF:A2> cli[5420]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.177"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.32 AP:AP32 <10.0.219.32 54:D7:E3:CA:B1:80> cli[5342]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.32"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.12 AP:AP12 <10.0.219.12 54:D7:E3:CA:A3:2E> cli[5249]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.12"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.52 AP:AP52 <10.0.219.52 54:D7:E3:CA:AF:8C> cli[5414]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.52"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.43 AP:AP43 <10.0.219.43 54:D7:E3:CA:CA:70> cli[5250]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.43"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.118 AP:AP018 <10.0.219.118 A8:5B:F7:CA:0C:54> cli[5524]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.118"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.133 AP:AP033 <10.0.219.133 54:D7:E3:CA:E6:1A> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.133"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.116 AP:AP016 <10.0.219.116 A8:5B:F7:CA:10:5E> cli[5527]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.116"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.156 AP:AP056 <10.0.219.156 54:D7:E3:CA:EA:68> cli[5420]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.156"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.179 AP:AP079 <10.0.219.179 54:D7:E3:CB:02:A8> cli[5422]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.179"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.159 AP:AP059 <10.0.219.159 54:D7:E3:CA:C1:B2> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.159"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.155 AP:AP055 <10.0.219.155 54:D7:E3:CB:06:9C> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.155"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.171 AP:AP071 <10.0.219.171 A8:5B:F7:CA:17:1E> cli[5627]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.171"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.31 AP:AP31 <10.0.219.31 54:D7:E3:CA:B4:34> cli[5242]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.31"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.34 AP:AP34 <10.0.219.34 54:D7:E3:CA:B0:AA> cli[5329]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.34"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 cli[5328]: <541032> <INFO> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  recv_sta_online: allocate accounting session id, user-56:a2:a5:27:ff:15 id-1761604912.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.53 AP:AP53 <10.0.219.53 54:D7:E3:CA:EE:12> cli[5328]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.53"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 cli[5328]: <541036> <INFO> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  send_stm_sta_state: send idle timeout, sta 56:a2:a5:27:ff:15 , idle time-1000.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.157 AP:AP057 <10.0.219.157 54:D7:E3:CA:BB:DE> cli[5421]: Receive session mobility req for client 56:a2:a5:27:ff:15",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.157"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: recv_radius_acct_multi_session_id: 22196: got mac='56:a2:a5:27:ff:15', name='(null)', start_time='1761604912 (Mon Oct 27 23:41:52 2025 )'",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: AP 10.0.219.66, vap 54:d7:e3:2a:b7:31, num_client 3 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.11 cli[5343]: <541012> <ERRS> AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C>  recv_sta_lkup_req: 2528: find client-56:a2:a5:27:ff:15 fail.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_sta_lkup_req: client (56:a2:a5:27:ff:15) IP (147.175.160.238) DHCP Status (4) in Cluster",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 cli[5328]: <541036> <INFO> AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72>  send_stm_sta_state: send idle timeout, sta 56:a2:a5:27:ff:15 , idle time-1000.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: recv_radius_acct_multi_session_id: 22196: got mac='56:a2:a5:27:ff:15', name='(null)', start_time='1761604912 (Mon Oct 27 23:41:52 2025 )'",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID buffer is (54d7e3caab72) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID Type is (0) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID buffer is (54d7e3caab72) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID Type is (0) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.151 AP:AP051 <10.0.219.151 54:D7:E3:CA:DC:20> cli[5422]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.151"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID buffer is (54d7e3caab72) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID Type is (0) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:01:42.084+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606102.12998594",
+    "full_log": "Oct 28 00:01:41 10.0.219.66 AP:AP66 <10.0.219.66 54:D7:E3:CA:AB:72> stm[5354]: iap_fmt_called_station_id: Called Station ID Type is (0) ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:01:41",
+      "hostname": "10.0.219.66"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  }
+]

@@ -1,0 +1,4518 @@
+[
+  {
+    "timestamp": "2025-10-28T00:00:43.019+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3320,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6173712",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041483565919 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=34.241.101.219 srccountry=\"Ireland\" dstip=147.175.162.37 dstcountry=\"Slovakia\" srcport=21 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161602 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244837 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "34.241.101.219",
+      "srcport": "21",
+      "dstip": "147.175.162.37",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041483565919",
+      "eventtype": "signature",
+      "incidentserialno": "3357244837",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161602",
+      "srccountry": "Ireland",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.024+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3331,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6173712",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041779666543 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=18.130.25.201 srccountry=\"United Kingdom\" dstip=147.175.160.194 dstcountry=\"Slovakia\" srcport=14 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161864 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244922 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "18.130.25.201",
+      "srcport": "14",
+      "dstip": "147.175.160.194",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041779666543",
+      "eventtype": "signature",
+      "incidentserialno": "3357244922",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161864",
+      "srccountry": "United Kingdom",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.027+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3335,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6247029",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042004372306 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=39.175.132.140 srccountry=\"China\" dstip=147.175.162.233 dstcountry=\"Slovakia\" srcport=41310 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162012 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244955 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "39.175.132.140",
+      "srcport": "41310",
+      "dstip": "147.175.162.233",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042004372306",
+      "eventtype": "signature",
+      "incidentserialno": "3357244955",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162012",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.031+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3344,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6247029",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042049649002 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=34.242.56.86 srccountry=\"Ireland\" dstip=147.175.162.237 dstcountry=\"Slovakia\" srcport=14 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162072 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244996 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "34.242.56.86",
+      "srcport": "14",
+      "dstip": "147.175.162.237",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042049649002",
+      "eventtype": "signature",
+      "incidentserialno": "3357244996",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162072",
+      "srccountry": "Ireland",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.033+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3351,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6247029",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042187199788 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=16083 srcip=5.253.36.150 srccountry=\"Singapore\" dstip=147.175.161.107 dstcountry=\"Slovakia\" srcport=42977 dstport=1900 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=17 service=\"MMS\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162168 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"UPnP\" incidentserialno=3357245021 msg=\"Network.Service: UPnP\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "5.253.36.150",
+      "srcport": "42977",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042187199788",
+      "eventtype": "signature",
+      "incidentserialno": "3357245021",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: UPnP",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "service": "MMS",
+      "sessionid": "2314162168",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.037+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3359,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6247029",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041437950424 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=39.175.132.140 srccountry=\"China\" dstip=147.175.162.184 dstcountry=\"Slovakia\" srcport=41310 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161535 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244793 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "39.175.132.140",
+      "srcport": "41310",
+      "dstip": "147.175.162.184",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041437950424",
+      "eventtype": "signature",
+      "incidentserialno": "3357244793",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161535",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.042+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1564,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041499546426 tz=\"+0100\" logid=\"0000000020\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=147.175.160.7 srcport=49427 srcintf=\"inside\" srcintfrole=\"lan\" dstip=98.66.133.184 dstport=443 dstintf=\"outside\" dstintfrole=\"wan\" srccountry=\"Slovakia\" dstcountry=\"France\" sessionid=2313982163 proto=6 action=\"accept\" policyid=2 policytype=\"policy\" poluuid=\"2a7f9d02-b3fe-51ee-bd60-53404bd02dc6\" policyname=\"allow inside\" service=\"HTTPS\" trandisp=\"noop\" appid=52452 app=\"Windows.Push.Notification\" appcat=\"General.Interest\" apprisk=\"elevated\" applist=\"default\" duration=301 sentbyte=92 rcvdbyte=52 sentpkt=2 rcvdpkt=1 sentdelta=0 rcvddelta=0 srchwvendor=\"Cisco\" devtype=\"Router\" unauthuser=\"orders\" unauthusersource=\"imap\" mastersrcmac=\"84:b8:02:66:72:34\" srcmac=\"84:b8:02:66:72:34\" srcserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "147.175.160.7",
+      "srcport": "49427",
+      "dstip": "98.66.133.184",
+      "dstport": "443",
+      "dstuser": "orders",
+      "app": "Windows.Push.Notification",
+      "appcat": "General.Interest",
+      "appid": "52452",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "France",
+      "dstintf": "outside",
+      "dstintfrole": "wan",
+      "duration": "301",
+      "eventtime": "1761606041499546426",
+      "level": "notice",
+      "logid": "0000000020",
+      "policyid": "2",
+      "poluuid": "2a7f9d02-b3fe-51ee-bd60-53404bd02dc6",
+      "proto": "6",
+      "rcvdbyte": "52",
+      "sentbyte": "92",
+      "sentpkt": "2",
+      "service": "HTTPS",
+      "sessionid": "2313982163",
+      "srccountry": "Slovakia",
+      "srcintf": "inside",
+      "srcintfrole": "lan",
+      "subtype": "forward",
+      "time": "00:00:41",
+      "trandisp": "noop",
+      "type": "traffic",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.045+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1565,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041678715550 tz=\"+0100\" logid=\"0000000013\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.39 srcport=53565 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2314050145 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=186 sentbyte=240 rcvdbyte=0 sentpkt=2 rcvdpkt=0 utmaction=\"allow\" countapp=1 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.39",
+      "srcport": "53565",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "countapp": "1",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "186",
+      "eventtime": "1761606041678715550",
+      "level": "notice",
+      "logid": "0000000013",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "240",
+      "sentpkt": "2",
+      "service": "MMS",
+      "sessionid": "2314050145",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:41",
+      "trandisp": "noop",
+      "type": "traffic",
+      "utmaction": "allow",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.046+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3376,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041701714754 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=52.81.71.131 srccountry=\"China\" dstip=147.175.161.217 dstcountry=\"Slovakia\" srcport=36696 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161761 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244866 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "52.81.71.131",
+      "srcport": "36696",
+      "dstip": "147.175.161.217",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041701714754",
+      "eventtype": "signature",
+      "incidentserialno": "3357244866",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161761",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.048+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3380,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041768868677 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=18.130.25.201 srccountry=\"United Kingdom\" dstip=147.175.163.141 dstcountry=\"Slovakia\" srcport=14 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161821 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244887 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "18.130.25.201",
+      "srcport": "14",
+      "dstip": "147.175.163.141",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041768868677",
+      "eventtype": "signature",
+      "incidentserialno": "3357244887",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161821",
+      "srccountry": "United Kingdom",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.049+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3382,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041775554206 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=39.175.132.140 srccountry=\"China\" dstip=147.175.162.185 dstcountry=\"Slovakia\" srcport=41310 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161845 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244908 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "39.175.132.140",
+      "srcport": "41310",
+      "dstip": "147.175.162.185",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041775554206",
+      "eventtype": "signature",
+      "incidentserialno": "3357244908",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161845",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.051+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3387,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041891124178 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=39.175.132.140 srccountry=\"China\" dstip=147.175.162.228 dstcountry=\"Slovakia\" srcport=41310 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161927 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244937 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "39.175.132.140",
+      "srcport": "41310",
+      "dstip": "147.175.162.228",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041891124178",
+      "eventtype": "signature",
+      "incidentserialno": "3357244937",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161927",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:43.049+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3388,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606043.6297811",
+    "full_log": "Oct 28 00:00:42 147.175.144.2 date=2025-10-28 time=00:00:41 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606041778624701 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=18.130.25.201 srccountry=\"United Kingdom\" dstip=147.175.162.37 dstcountry=\"Slovakia\" srcport=14 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314161857 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357244915 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:42",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "18.130.25.201",
+      "srcport": "14",
+      "dstip": "147.175.162.37",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606041778624701",
+      "eventtype": "signature",
+      "incidentserialno": "3357244915",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314161857",
+      "srccountry": "United Kingdom",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:41",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.018+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1570,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042448718259 tz=\"+0100\" logid=\"0000000013\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.200 srcport=31281 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2314050830 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=185 sentbyte=360 rcvdbyte=0 sentpkt=3 rcvdpkt=0 utmaction=\"allow\" countapp=1 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.200",
+      "srcport": "31281",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "countapp": "1",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "185",
+      "eventtime": "1761606042448718259",
+      "level": "notice",
+      "logid": "0000000013",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "360",
+      "sentpkt": "3",
+      "service": "MMS",
+      "sessionid": "2314050830",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "utmaction": "allow",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.018+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1571,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042350407443 tz=\"+0100\" logid=\"0000000020\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.46 srcport=35170 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2313923408 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=391 sentbyte=480 rcvdbyte=0 sentpkt=4 rcvdpkt=0 sentdelta=240 rcvddelta=0 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.46",
+      "srcport": "35170",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "391",
+      "eventtime": "1761606042350407443",
+      "level": "notice",
+      "logid": "0000000020",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "480",
+      "sentpkt": "4",
+      "service": "MMS",
+      "sessionid": "2313923408",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.018+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1572,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042338449560 tz=\"+0100\" logid=\"0000000020\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.208 srcport=55957 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2314058868 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=171 sentbyte=600 rcvdbyte=0 sentpkt=5 rcvdpkt=0 sentdelta=600 rcvddelta=0 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.208",
+      "srcport": "55957",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "171",
+      "eventtime": "1761606042338449560",
+      "level": "notice",
+      "logid": "0000000020",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "600",
+      "sentpkt": "5",
+      "service": "MMS",
+      "sessionid": "2314058868",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.018+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1574,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042434251703 tz=\"+0100\" logid=\"0000000020\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.80 srcport=13720 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2313977068 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=309 sentbyte=480 rcvdbyte=0 sentpkt=4 rcvdpkt=0 sentdelta=360 rcvddelta=0 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.80",
+      "srcport": "13720",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "309",
+      "eventtime": "1761606042434251703",
+      "level": "notice",
+      "logid": "0000000020",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "480",
+      "sentpkt": "4",
+      "service": "MMS",
+      "sessionid": "2313977068",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.023+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1576,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042658760728 tz=\"+0100\" logid=\"0000000013\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=147.175.161.60 srcport=7046 srcintf=\"inside\" srcintfrole=\"lan\" dstip=74.125.143.188 dstport=5228 dstintf=\"outside\" dstintfrole=\"wan\" srccountry=\"Slovakia\" dstcountry=\"United States\" sessionid=2314155546 proto=6 action=\"server-rst\" policyid=2 policytype=\"policy\" poluuid=\"2a7f9d02-b3fe-51ee-bd60-53404bd02dc6\" policyname=\"allow inside\" service=\"tcp/5228\" trandisp=\"noop\" appid=43714 app=\"Google.Push.Notification\" appcat=\"General.Interest\" apprisk=\"low\" applist=\"default\" duration=10 sentbyte=172 rcvdbyte=92 sentpkt=4 rcvdpkt=2 utmaction=\"allow\" countapp=1 srchwvendor=\"Cisco\" devtype=\"Router\" unauthuser=\"orders\" unauthusersource=\"imap\" mastersrcmac=\"84:b8:02:66:72:34\" srcmac=\"84:b8:02:66:72:34\" srcserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "server-rst",
+      "srcip": "147.175.161.60",
+      "srcport": "7046",
+      "dstip": "74.125.143.188",
+      "dstport": "5228",
+      "dstuser": "orders",
+      "app": "Google.Push.Notification",
+      "appcat": "General.Interest",
+      "appid": "43714",
+      "applist": "default",
+      "apprisk": "low",
+      "countapp": "1",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "United States",
+      "dstintf": "outside",
+      "dstintfrole": "wan",
+      "duration": "10",
+      "eventtime": "1761606042658760728",
+      "level": "notice",
+      "logid": "0000000013",
+      "policyid": "2",
+      "poluuid": "2a7f9d02-b3fe-51ee-bd60-53404bd02dc6",
+      "proto": "6",
+      "rcvdbyte": "92",
+      "sentbyte": "172",
+      "sentpkt": "4",
+      "service": "tcp/5228",
+      "sessionid": "2314155546",
+      "srccountry": "Slovakia",
+      "srcintf": "inside",
+      "srcintfrole": "lan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "utmaction": "allow",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.025+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1577,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042686984459 tz=\"+0100\" logid=\"0000000020\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.51 srcport=4836 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2314075156 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=143 sentbyte=480 rcvdbyte=0 sentpkt=4 rcvdpkt=0 sentdelta=480 rcvddelta=0 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.51",
+      "srcport": "4836",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "143",
+      "eventtime": "1761606042686984459",
+      "level": "notice",
+      "logid": "0000000020",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "480",
+      "sentpkt": "4",
+      "service": "MMS",
+      "sessionid": "2314075156",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.027+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3410,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042932228080 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=15895 srcip=147.175.162.255 srccountry=\"Slovakia\" dstip=17.248.237.129 dstcountry=\"United States\" srcport=57367 dstport=443 srcintf=\"inside\" srcintfrole=\"lan\" dstintf=\"outside\" dstintfrole=\"wan\" proto=6 service=\"HTTPS\" direction=\"outgoing\" policyid=2 poluuid=\"2a7f9d02-b3fe-51ee-bd60-53404bd02dc6\" policytype=\"policy\" sessionid=2314162680 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"SSL\" incidentserialno=3357245226 msg=\"Network.Service: SSL\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "147.175.162.255",
+      "srcport": "57367",
+      "dstip": "17.248.237.129",
+      "dstport": "443",
+      "app": "SSL",
+      "appcat": "Network.Service",
+      "appid": "15895",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "United States",
+      "dstintf": "outside",
+      "dstintfrole": "wan",
+      "eventtime": "1761606042932228080",
+      "eventtype": "signature",
+      "incidentserialno": "3357245226",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: SSL",
+      "policyid": "2",
+      "poluuid": "2a7f9d02-b3fe-51ee-bd60-53404bd02dc6",
+      "proto": "6",
+      "service": "HTTPS",
+      "sessionid": "2314162680",
+      "srccountry": "Slovakia",
+      "srcintf": "inside",
+      "srcintfrole": "lan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.027+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3412,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042953211820 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=16083 srcip=5.253.36.9 srccountry=\"Singapore\" dstip=147.175.161.107 dstcountry=\"Slovakia\" srcport=18179 dstport=1900 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=17 service=\"MMS\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162708 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"UPnP\" incidentserialno=3357245229 msg=\"Network.Service: UPnP\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "5.253.36.9",
+      "srcport": "18179",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042953211820",
+      "eventtype": "signature",
+      "incidentserialno": "3357245229",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: UPnP",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "service": "MMS",
+      "sessionid": "2314162708",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.028+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3413,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042976813504 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=140.179.237.239 srccountry=\"China\" dstip=147.175.162.237 dstcountry=\"Slovakia\" srcport=22 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162720 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245235 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "140.179.237.239",
+      "srcport": "22",
+      "dstip": "147.175.162.237",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042976813504",
+      "eventtype": "signature",
+      "incidentserialno": "3357245235",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162720",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.027+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3414,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042961493050 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=29880 srcip=147.175.162.255 srccountry=\"Slovakia\" dstip=17.248.237.129 dstcountry=\"United States\" srcport=57367 dstport=443 srcintf=\"inside\" srcintfrole=\"lan\" dstintf=\"outside\" dstintfrole=\"wan\" proto=6 service=\"SSL\" direction=\"incoming\" policyid=2 poluuid=\"2a7f9d02-b3fe-51ee-bd60-53404bd02dc6\" policytype=\"policy\" sessionid=2314162680 applist=\"default\" action=\"pass\" appcat=\"Storage.Backup\" app=\"iCloud\" hostname=\"metrics.icloud.com\" incidentserialno=3357245232 url=\"/\" msg=\"Storage.Backup: iCloud\" apprisk=\"medium\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "147.175.162.255",
+      "srcport": "57367",
+      "dstip": "17.248.237.129",
+      "dstport": "443",
+      "url": "/",
+      "app": "iCloud",
+      "appcat": "Storage.Backup",
+      "appid": "29880",
+      "applist": "default",
+      "apprisk": "medium",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "incoming",
+      "dstcountry": "United States",
+      "dstintf": "outside",
+      "dstintfrole": "wan",
+      "eventtime": "1761606042961493050",
+      "eventtype": "signature",
+      "hostname": "metrics.icloud.com",
+      "incidentserialno": "3357245232",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Storage.Backup: iCloud",
+      "policyid": "2",
+      "poluuid": "2a7f9d02-b3fe-51ee-bd60-53404bd02dc6",
+      "proto": "6",
+      "service": "SSL",
+      "sessionid": "2314162680",
+      "srccountry": "Slovakia",
+      "srcintf": "inside",
+      "srcintfrole": "lan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.032+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3424,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043082326818 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=15895 srcip=147.175.162.255 srccountry=\"Slovakia\" dstip=40.79.167.8 dstcountry=\"Australia\" srcport=55204 dstport=443 srcintf=\"inside\" srcintfrole=\"lan\" dstintf=\"outside\" dstintfrole=\"wan\" proto=6 service=\"HTTPS\" direction=\"outgoing\" policyid=2 poluuid=\"2a7f9d02-b3fe-51ee-bd60-53404bd02dc6\" policytype=\"policy\" sessionid=2314162626 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"SSL\" incidentserialno=3357245300 msg=\"Network.Service: SSL\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "147.175.162.255",
+      "srcport": "55204",
+      "dstip": "40.79.167.8",
+      "dstport": "443",
+      "app": "SSL",
+      "appcat": "Network.Service",
+      "appid": "15895",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Australia",
+      "dstintf": "outside",
+      "dstintfrole": "wan",
+      "eventtime": "1761606043082326818",
+      "eventtype": "signature",
+      "incidentserialno": "3357245300",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: SSL",
+      "policyid": "2",
+      "poluuid": "2a7f9d02-b3fe-51ee-bd60-53404bd02dc6",
+      "proto": "6",
+      "service": "HTTPS",
+      "sessionid": "2314162626",
+      "srccountry": "Slovakia",
+      "srcintf": "inside",
+      "srcintfrole": "lan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.032+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3427,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043124333350 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=16774 srcip=66.132.153.155 srccountry=\"United States\" dstip=147.175.161.210 dstcountry=\"Slovakia\" srcport=35294 dstport=27036 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=17 service=\"udp/27036\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162858 applist=\"default\" action=\"pass\" appcat=\"Game\" app=\"Valve.Games\" incidentserialno=3357245304 msg=\"Game: Valve.Games\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "66.132.153.155",
+      "srcport": "35294",
+      "dstip": "147.175.161.210",
+      "dstport": "27036",
+      "app": "Valve.Games",
+      "appcat": "Game",
+      "appid": "16774",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043124333350",
+      "eventtype": "signature",
+      "incidentserialno": "3357245304",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Game: Valve.Games",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "service": "udp/27036",
+      "sessionid": "2314162858",
+      "srccountry": "United States",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.034+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3431,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043244427304 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=3.70.232.114 srccountry=\"Germany\" dstip=147.175.163.141 dstcountry=\"Slovakia\" srcport=22 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162936 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245324 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "3.70.232.114",
+      "srcport": "22",
+      "dstip": "147.175.163.141",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043244427304",
+      "eventtype": "signature",
+      "incidentserialno": "3357245324",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162936",
+      "srccountry": "Germany",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.038+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3443,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042544536646 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=3.252.84.79 srccountry=\"Ireland\" dstip=147.175.162.237 dstcountry=\"Slovakia\" srcport=1 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162439 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245141 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "3.252.84.79",
+      "srcport": "1",
+      "dstip": "147.175.162.237",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042544536646",
+      "eventtype": "signature",
+      "incidentserialno": "3357245141",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162439",
+      "srccountry": "Ireland",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.036+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1579,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042448717635 tz=\"+0100\" logid=\"0000000013\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=5.253.36.5 srcport=52735 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.161.107 dstport=1900 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"Singapore\" dstcountry=\"Slovakia\" sessionid=2313937951 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"MMS\" trandisp=\"noop\" appid=16083 app=\"UPnP\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=369 sentbyte=840 rcvdbyte=0 sentpkt=7 rcvdpkt=0 utmaction=\"allow\" countapp=1 sentdelta=240 rcvddelta=0 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "5.253.36.5",
+      "srcport": "52735",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "dstuser": "orders",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "countapp": "1",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "369",
+      "eventtime": "1761606042448717635",
+      "level": "notice",
+      "logid": "0000000013",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "840",
+      "sentpkt": "7",
+      "service": "MMS",
+      "sessionid": "2313937951",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "utmaction": "allow",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.039+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3444,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6329776",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042631439539 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=16083 srcip=5.253.36.152 srccountry=\"Singapore\" dstip=147.175.161.107 dstcountry=\"Slovakia\" srcport=32093 dstport=1900 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=17 service=\"MMS\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162505 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"UPnP\" incidentserialno=3357245166 msg=\"Network.Service: UPnP\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "5.253.36.152",
+      "srcport": "32093",
+      "dstip": "147.175.161.107",
+      "dstport": "1900",
+      "app": "UPnP",
+      "appcat": "Network.Service",
+      "appid": "16083",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042631439539",
+      "eventtype": "signature",
+      "incidentserialno": "3357245166",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: UPnP",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "service": "MMS",
+      "sessionid": "2314162505",
+      "srccountry": "Singapore",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.039+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3445,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6395280",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042680394167 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=23759 srcip=205.210.31.172 srccountry=\"Brazil\" dstip=147.175.160.47 dstcountry=\"Slovakia\" srcport=62866 dstport=2000 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=6 service=\"SCCP\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162357 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Skinny\" incidentserialno=3357245176 msg=\"Network.Service: Skinny\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "205.210.31.172",
+      "srcport": "62866",
+      "dstip": "147.175.160.47",
+      "dstport": "2000",
+      "app": "Skinny",
+      "appcat": "Network.Service",
+      "appid": "23759",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042680394167",
+      "eventtype": "signature",
+      "incidentserialno": "3357245176",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Skinny",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "6",
+      "service": "SCCP",
+      "sessionid": "2314162357",
+      "srccountry": "Brazil",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.040+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3446,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6395280",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042945097492 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=140.179.237.239 srccountry=\"China\" dstip=147.175.160.238 dstcountry=\"Slovakia\" srcport=22 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162701 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245227 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "140.179.237.239",
+      "srcport": "22",
+      "dstip": "147.175.160.238",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042945097492",
+      "eventtype": "signature",
+      "incidentserialno": "3357245227",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162701",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.045+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3458,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6395280",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043066143017 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=18.197.139.89 srccountry=\"Germany\" dstip=147.175.163.243 dstcountry=\"Slovakia\" srcport=7 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162809 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245280 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "18.197.139.89",
+      "srcport": "7",
+      "dstip": "147.175.163.243",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043066143017",
+      "eventtype": "signature",
+      "incidentserialno": "3357245280",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162809",
+      "srccountry": "Germany",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.045+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3459,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6395280",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043067634015 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=18.197.139.89 srccountry=\"Germany\" dstip=147.175.163.176 dstcountry=\"Slovakia\" srcport=7 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162815 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245286 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "18.197.139.89",
+      "srcport": "7",
+      "dstip": "147.175.163.176",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043067634015",
+      "eventtype": "signature",
+      "incidentserialno": "3357245286",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162815",
+      "srccountry": "Germany",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.046+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3460,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6395280",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043069517562 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=18.197.139.89 srccountry=\"Germany\" dstip=147.175.162.237 dstcountry=\"Slovakia\" srcport=7 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162821 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245290 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "18.197.139.89",
+      "srcport": "7",
+      "dstip": "147.175.162.237",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043069517562",
+      "eventtype": "signature",
+      "incidentserialno": "3357245290",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162821",
+      "srccountry": "Germany",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.050+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3465,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043256568779 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=3.70.232.114 srccountry=\"Germany\" dstip=147.175.163.176 dstcountry=\"Slovakia\" srcport=22 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162981 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245351 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "3.70.232.114",
+      "srcport": "22",
+      "dstip": "147.175.163.176",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043256568779",
+      "eventtype": "signature",
+      "incidentserialno": "3357245351",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162981",
+      "srccountry": "Germany",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.050+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3467,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043257096719 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=3.70.232.114 srccountry=\"Germany\" dstip=147.175.162.237 dstcountry=\"Slovakia\" srcport=22 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162987 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245357 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "3.70.232.114",
+      "srcport": "22",
+      "dstip": "147.175.162.237",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043257096719",
+      "eventtype": "signature",
+      "incidentserialno": "3357245357",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162987",
+      "srccountry": "Germany",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.027+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1586,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042958716053 tz=\"+0100\" logid=\"0000000013\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=147.175.162.255 srcport=55203 srcintf=\"inside\" srcintfrole=\"lan\" dstip=20.189.173.5 dstport=443 dstintf=\"outside\" dstintfrole=\"wan\" srccountry=\"Slovakia\" dstcountry=\"United States\" sessionid=2314161292 proto=6 action=\"close\" policyid=2 policytype=\"policy\" poluuid=\"2a7f9d02-b3fe-51ee-bd60-53404bd02dc6\" policyname=\"allow inside\" service=\"HTTPS\" trandisp=\"noop\" appid=41469 app=\"Microsoft.Portal\" appcat=\"Collaboration\" apprisk=\"elevated\" applist=\"default\" duration=1 sentbyte=168 rcvdbyte=576 sentpkt=3 rcvdpkt=2 utmaction=\"allow\" countapp=1 srchwvendor=\"Cisco\" devtype=\"Router\" unauthuser=\"orders\" unauthusersource=\"imap\" mastersrcmac=\"84:b8:02:66:72:34\" srcmac=\"84:b8:02:66:72:34\" srcserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "close",
+      "srcip": "147.175.162.255",
+      "srcport": "55203",
+      "dstip": "20.189.173.5",
+      "dstport": "443",
+      "dstuser": "orders",
+      "app": "Microsoft.Portal",
+      "appcat": "Collaboration",
+      "appid": "41469",
+      "applist": "default",
+      "apprisk": "elevated",
+      "countapp": "1",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "United States",
+      "dstintf": "outside",
+      "dstintfrole": "wan",
+      "duration": "1",
+      "eventtime": "1761606042958716053",
+      "level": "notice",
+      "logid": "0000000013",
+      "policyid": "2",
+      "poluuid": "2a7f9d02-b3fe-51ee-bd60-53404bd02dc6",
+      "proto": "6",
+      "rcvdbyte": "576",
+      "sentbyte": "168",
+      "sentpkt": "3",
+      "service": "HTTPS",
+      "sessionid": "2314161292",
+      "srccountry": "Slovakia",
+      "srcintf": "inside",
+      "srcintfrole": "lan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "utmaction": "allow",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.052+0100",
+    "rule": {
+      "level": 1,
+      "description": "Fortigate: Traffic to be aware of.",
+      "id": "81618",
+      "firedtimes": 1591,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043328776949 tz=\"+0100\" logid=\"0000000013\" type=\"traffic\" subtype=\"forward\" level=\"notice\" vd=\"root\" srcip=106.75.162.184 srcport=58914 srcintf=\"outside\" srcintfrole=\"wan\" dstip=147.175.162.0 dstport=1812 dstintf=\"inside\" dstintfrole=\"lan\" srccountry=\"China\" dstcountry=\"Slovakia\" sessionid=2314052530 proto=17 action=\"accept\" policyid=11 policytype=\"policy\" poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policyname=\"allow outside\" service=\"RADIUS\" trandisp=\"noop\" appid=16172 app=\"RADIUS\" appcat=\"Network.Service\" apprisk=\"elevated\" applist=\"default\" duration=183 sentbyte=115 rcvdbyte=0 sentpkt=1 rcvdpkt=0 utmaction=\"allow\" countapp=1 dsthwvendor=\"Cisco\" dstdevtype=\"Router\" dstunauthuser=\"orders\" dstunauthusersource=\"imap\" masterdstmac=\"84:b8:02:66:72:34\" dstmac=\"84:b8:02:66:72:34\" dstserver=0",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "accept",
+      "srcip": "106.75.162.184",
+      "srcport": "58914",
+      "dstip": "147.175.162.0",
+      "dstport": "1812",
+      "dstuser": "orders",
+      "app": "RADIUS",
+      "appcat": "Network.Service",
+      "appid": "16172",
+      "applist": "default",
+      "apprisk": "elevated",
+      "countapp": "1",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "duration": "183",
+      "eventtime": "1761606043328776949",
+      "level": "notice",
+      "logid": "0000000013",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "17",
+      "rcvdbyte": "0",
+      "sentbyte": "115",
+      "sentpkt": "1",
+      "service": "RADIUS",
+      "sessionid": "2314052530",
+      "srccountry": "China",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "forward",
+      "time": "00:00:43",
+      "trandisp": "noop",
+      "type": "traffic",
+      "utmaction": "allow",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.053+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3469,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043528217305 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=203.124.34.66 srccountry=\"Pakistan\" dstip=147.175.162.163 dstcountry=\"Slovakia\" srcport=55135 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314163146 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245387 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "203.124.34.66",
+      "srcport": "55135",
+      "dstip": "147.175.162.163",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043528217305",
+      "eventtype": "signature",
+      "incidentserialno": "3357245387",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314163146",
+      "srccountry": "Pakistan",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.054+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3470,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043607388290 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=23759 srcip=205.210.31.172 srccountry=\"Brazil\" dstip=147.175.161.3 dstcountry=\"Slovakia\" srcport=64708 dstport=2000 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=6 service=\"SCCP\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314163068 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Skinny\" incidentserialno=3357245396 msg=\"Network.Service: Skinny\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "205.210.31.172",
+      "srcport": "64708",
+      "dstip": "147.175.161.3",
+      "dstport": "2000",
+      "app": "Skinny",
+      "appcat": "Network.Service",
+      "appid": "23759",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043607388290",
+      "eventtype": "signature",
+      "incidentserialno": "3357245396",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Skinny",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "6",
+      "service": "SCCP",
+      "sessionid": "2314163068",
+      "srccountry": "Brazil",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.055+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3474,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043647135151 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=52.209.131.183 srccountry=\"Ireland\" dstip=147.175.163.141 dstcountry=\"Slovakia\" srcport=20 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314163222 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245414 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "52.209.131.183",
+      "srcport": "20",
+      "dstip": "147.175.163.141",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043647135151",
+      "eventtype": "signature",
+      "incidentserialno": "3357245414",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314163222",
+      "srccountry": "Ireland",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.057+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3479,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606043654119294 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=52.209.131.183 srccountry=\"Ireland\" dstip=147.175.162.237 dstcountry=\"Slovakia\" srcport=20 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314163258 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245441 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "52.209.131.183",
+      "srcport": "20",
+      "dstip": "147.175.162.237",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606043654119294",
+      "eventtype": "signature",
+      "incidentserialno": "3357245441",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314163258",
+      "srccountry": "Ireland",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.038+0100",
+    "rule": {
+      "level": 3,
+      "description": "Fortigate: App passed by firewall.",
+      "id": "81633",
+      "firedtimes": 3488,
+      "mail": false,
+      "groups": [
+        "fortigate",
+        "syslog"
+      ],
+      "gdpr": [
+        "IV_35.7.d"
+      ],
+      "hipaa": [
+        "164.312.b"
+      ],
+      "nist_800_53": [
+        "AU.6"
+      ],
+      "pci_dss": [
+        "10.6.1"
+      ]
+    },
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6444608",
+    "full_log": "Oct 28 00:00:43 147.175.144.2 date=2025-10-28 time=00:00:43 devname=\"FortiGate-600F\" devid=\"FG6H0FTB23904723\" eventtime=1761606042548147599 tz=\"+0100\" logid=\"1059028704\" type=\"utm\" subtype=\"app-ctrl\" eventtype=\"signature\" level=\"information\" vd=\"root\" appid=24466 srcip=3.252.84.79 srccountry=\"Ireland\" dstip=147.175.162.37 dstcountry=\"Slovakia\" srcport=1 dstport=8 srcintf=\"outside\" srcintfrole=\"wan\" dstintf=\"inside\" dstintfrole=\"lan\" proto=1 service=\"PING\" direction=\"outgoing\" policyid=11 poluuid=\"808834ec-9d1a-51ef-835d-f46e34b6c71e\" policytype=\"policy\" sessionid=2314162451 applist=\"default\" action=\"pass\" appcat=\"Network.Service\" app=\"Ping\" incidentserialno=3357245152 msg=\"Network.Service: Ping\" apprisk=\"elevated\"",
+    "predecoder": {
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "147.175.144.2"
+    },
+    "decoder": {
+      "name": "fortigate-firewall-v5"
+    },
+    "data": {
+      "action": "pass",
+      "srcip": "3.252.84.79",
+      "srcport": "1",
+      "dstip": "147.175.162.37",
+      "dstport": "8",
+      "app": "Ping",
+      "appcat": "Network.Service",
+      "appid": "24466",
+      "applist": "default",
+      "apprisk": "elevated",
+      "devid": "FG6H0FTB23904723",
+      "devname": "FortiGate-600F",
+      "direction": "outgoing",
+      "dstcountry": "Slovakia",
+      "dstintf": "inside",
+      "dstintfrole": "lan",
+      "eventtime": "1761606042548147599",
+      "eventtype": "signature",
+      "incidentserialno": "3357245152",
+      "level": "information",
+      "logid": "1059028704",
+      "msg": "Network.Service: Ping",
+      "policyid": "11",
+      "poluuid": "808834ec-9d1a-51ef-835d-f46e34b6c71e",
+      "proto": "1",
+      "service": "PING",
+      "sessionid": "2314162451",
+      "srccountry": "Ireland",
+      "srcintf": "outside",
+      "srcintfrole": "wan",
+      "subtype": "app-ctrl",
+      "time": "00:00:43",
+      "type": "utm",
+      "vd": "root"
+    },
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.64 AP:AP64 <10.0.219.64 54:D7:E3:CA:F6:4C> sapd[5347]: sapd_esl_usb_link_monitor_timeout: ESL-Radio not plugged. ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.64"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 cli[5343]: <541004> <WARN> AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C>  recv_sta_update: receive station msg, mac-d0:37:45:e8:6a:2b bssid-54:d7:e3:30:7c:71 essid-eduroam timestamp-1761606043-152352.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 cli[5343]: <541004> <WARN> AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C>  recv_sta_update: receive station msg, mac-d0:37:45:e8:6a:2b bssid-54:d7:e3:30:7c:71 essid-eduroam timestamp-1761606043-161036.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.186 AP:AP70 <10.0.219.186 54:D7:E3:CA:D1:04> cli[5353]: arping 29396 times to 10.0.219.254 and arp_result is 0x0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.186"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.186 AP:AP70 <10.0.219.186 54:D7:E3:CA:D1:04> cli[5353]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.186"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.186 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.186) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.186 AP:AP70 <10.0.219.186 54:D7:E3:CA:D1:04> cli[5353]:  swarm_timer_handler,check_ssh ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.186"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.43 AP:AP43 <10.0.219.43 54:D7:E3:CA:CA:70> cli[5250]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.43"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.186 AP:AP70 <10.0.219.186 54:D7:E3:CA:D1:04> awc[5350]:  Receive awc keepalive detection message and send reply.",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.186"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.174 AP:AP074 <10.0.219.174 A8:5B:F7:CA:0C:B8> cli[5618]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.174"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.43) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.43 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.46 AP:AP46 <10.0.219.46 54:D7:E3:CA:D6:B4> cli[5322]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.46"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.064+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.174) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.174 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.46 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.43 AP:AP43 <10.0.219.43 54:D7:E3:CA:CA:70> cli[5250]:  swarm_timer_handler,check_ssh ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.43"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.46) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.155 AP:AP055 <10.0.219.155 54:D7:E3:CB:06:9C> cli[5421]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.155"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.155) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.155 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.26) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.26 AP:AP26 <10.0.219.26 54:D7:E3:CB:0C:8C> cli[5327]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.26"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.26 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.114 AP:AP014 <10.0.219.114 A8:5B:F7:CA:0A:5E> cli[5523]: arping 29385 times to 10.0.219.254 and arp_result is 0x0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.114"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.26 AP:AP26 <10.0.219.26 54:D7:E3:CB:0C:8C> cli[5327]:  swarm_timer_handler,check_ssh ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.26"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.114) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.114 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.114 AP:AP014 <10.0.219.114 A8:5B:F7:CA:0A:5E> cli[5523]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.114"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.172 AP:AP072 <10.0.219.172 A8:5B:F7:CA:19:DA> sapd[5547]: sapd_esl_usb_link_monitor_timeout: ESL-Radio not plugged. ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.172"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.114 AP:AP014 <10.0.219.114 A8:5B:F7:CA:0A:5E> cli[5523]:  swarm_timer_handler,check_ssh ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.114"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.42 AP:AP42 <10.0.219.42 54:D7:E3:CA:EA:04> cli[5245]: arping 29391 times to 10.0.219.254 and arp_result is 0x0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.42"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 cli[5343]: <541004> <WARN> AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C>  recv_sta_update: receive station msg, mac-d0:37:45:e8:6a:2b bssid-54:d7:e3:30:7c:71 essid-eduroam timestamp-1761606043-654921.",
+    "predecoder": {
+      "program_name": "cli",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.42 AP:AP42 <10.0.219.42 54:D7:E3:CA:EA:04> cli[5245]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.42"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.14 AP:AP14 <10.0.219.14 54:D7:E3:CA:C4:98> sapd[5440]: sapd_esl_usb_link_monitor_timeout: ESL-Radio not plugged. ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.14"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.42 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.154 AP:AP054 <10.0.219.154 54:D7:E3:CA:E8:9C> sapd[5440]: sapd_esl_usb_link_monitor_timeout: ESL-Radio not plugged. ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.154"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.42) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.13 AP:AP13 <10.0.219.13 54:D7:E3:CA:B6:4A> cli[5250]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.13"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.13) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.42 AP:AP42 <10.0.219.42 54:D7:E3:CA:EA:04> cli[5245]:  swarm_timer_handler,check_ssh ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.42"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.13 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.62 AP:AP62 <10.0.219.62 54:D7:E3:CB:07:C6> cli[5322]: send_register_local,member send  defaultcert checksum at heartbeat,cs_defaultcert_csum= 744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.62"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local, AP(10.0.219.62) config has taken effect",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: recv_heartbeat_local,compare defaultcert checksum,cs_defaultcert_csum= 744063016 ,received defaultcert_csum =744063016 ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.11 AP:AP11 <10.0.219.11 54:D7:E3:CA:E2:3C> cli[5343]: receive ap 10.0.219.62 with drt status 0",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.11"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  },
+  {
+    "timestamp": "2025-10-28T00:00:44.065+0100",
+    "agent": {
+      "id": "000",
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "manager": {
+      "name": "wazuh.fiit.stuba.sk.novalocal"
+    },
+    "id": "1761606044.6466800",
+    "full_log": "Oct 28 00:00:43 10.0.219.13 AP:AP13 <10.0.219.13 54:D7:E3:CA:B6:4A> cli[5250]:  swarm_timer_handler,check_ssh ",
+    "predecoder": {
+      "program_name": "AP",
+      "timestamp": "Oct 28 00:00:43",
+      "hostname": "10.0.219.13"
+    },
+    "decoder": {},
+    "location": "127.0.0.1"
+  }
+]
