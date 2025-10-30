@@ -2,6 +2,7 @@ import json
 
 def tolerant_load_file(path: str):
     """
+    used also for training data loading.
     Accept full JSON (array or single object) OR JSONL.
     Returns a list of dicts.
     """
