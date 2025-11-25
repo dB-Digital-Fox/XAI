@@ -1,6 +1,6 @@
 import os, time
 from typing import Any, Dict
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from pydantic import BaseModel
 from dotenv import load_dotenv
 

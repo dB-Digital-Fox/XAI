@@ -1,0 +1,1 @@
+["rule_level", "severity_ord", "bytes_sent", "bytes_recv", "bytes_total", "duration_sec", "dst_port", "dst_svc_sensitive", "dst_svc_admin", "pf_win", "pf_lin", "pf_nw", "pf_osks", "auth_result_pos", "auth_result_neg", "service_snmp", "service_ssh", "service_rdp", "service_winrm", "hour"]

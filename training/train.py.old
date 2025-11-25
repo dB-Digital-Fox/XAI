@@ -1,0 +1,251 @@
+import os, glob, json, numpy as np, pandas as pd, joblib, json as _json
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.calibration import CalibratedClassifierCV
+from sklearn.metrics import classification_report
+
+from src.common.utils import tolerant_load_file
+
+OPENSTACK_ENABLED = os.getenv("OPENSTACK_ENABLED", "false").lower() == "true"
+MODEL_PATH = os.getenv("MODEL_PATH", "./training/model.pkl")
+PARTS_GLOB = os.getenv("PARTS_GLOB", "./data/parts/part_*.json")
+
+SHAP_BG_PATH = "./training/shap_bg.npy"
+FEAT_NAMES_PATH = "./training/feature_names.json"
+
+def load_parts_local(glob_pat):
+    paths = sorted(glob.glob(glob_pat))
+    logs = []
+    for p in paths:
+        logs.extend(tolerant_load_file(p))
+    return logs
+
+def load_parts_openstack():
+    from src.common.openstack_io import fetch_json_objects  # lazy import
+    container = os.environ["OS_CONTAINER"]
+    prefix = os.getenv("OS_PREFIX", "parts/")
+    return fetch_json_objects(container, prefix)
+
+def to_features(alert):
+    # keep in sync with src/features.py
+    d = alert.get("data", {})
+    r = alert.get("rule", {})
+    def _to_int(x, default=0):
+        try: return int(x)
+        except: return default
+    sent = _to_int(d.get("sentbyte", 0))
+    rcvd = _to_int(d.get("rcvdbyte", 0))
+    duration = _to_int(d.get("duration", 0))
+    dstport = _to_int(d.get("dstport", 0))
+    rule_level = _to_int(r.get("level", 0))
+    bytes_total = sent + rcvd
+    bytes_ratio = float(sent) / float(rcvd + 1)
+    sensitive_ports = {22,3389,5985,5986}
+    web_ports = {80,443}
+    apprisk = str(d.get("apprisk","")).lower()
+    return {
+        "sentbyte": sent,
+        "rcvdbyte": rcvd,
+        "duration": duration,
+        "rule_level": rule_level,
+        "bytes_total": bytes_total,
+        "bytes_ratio": bytes_ratio,
+        "dstport": dstport,
+        "dst_is_sensitive": 1 if dstport in sensitive_ports else 0,
+        "dst_is_web": 1 if dstport in web_ports else 0,
+        "apprisk_elevated": 1 if apprisk in {"high","elevated"} else 0,
+        "hour": 0
+    }
+
+def weak_signals(alert):
+    d = alert.get("data", {}) or {}
+    r = alert.get("rule", {}) or {}
+
+    def _to_int(x, default=0):
+        try: return int(str(x))
+        except: return default
+
+    lvl = _to_int(r.get("level"), 0)
+    sev = (d.get("severity") or "").lower()
+    apprisk = (d.get("apprisk") or "").lower()
+    dstport = _to_int(d.get("dstport"), 0)
+    sent = _to_int(d.get("sentbyte"), 0)
+    rcvd = _to_int(d.get("rcvdbyte"), 0)
+    dur = _to_int(d.get("duration"), 0)
+    action = (d.get("action") or "").lower()
+    subtype = (d.get("subtype") or "").lower()
+    service = (d.get("service") or "").upper()
+
+    bytes_total = sent + rcvd
+    sensitive_ports = {22,3389,5985,5986,445}
+
+    # crude score 0..1 from signals (tune weights if needed)
+    score = 0.0
+    # rule level
+    if lvl >= 12: score += 0.35
+    elif lvl >= 8: score += 0.20
+    elif lvl >= 6: score += 0.08
+    # severity/app risk
+    if sev == "critical": score += 0.35
+    elif sev == "high":  score += 0.25
+    elif sev == "medium":score += 0.10
+    if apprisk in {"high","elevated"}: score += 0.20
+    # services/ports
+    if dstport in sensitive_ports:
+        score += 0.15
+        if action != "dropped": score += 0.10
+    # volume/time
+    if bytes_total > 5_000_000: score += 0.25
+    elif bytes_total > 1_000_000: score += 0.10
+    if dur > 7200: score += 0.20
+    elif dur > 1800: score += 0.10
+    # IPS categories
+    if subtype in {"malware"}: score += 0.30
+    elif subtype in {"ips","ids"}: score += 0.08
+
+    # clamp
+    return min(score, 1.0)
+
+def weak_label_and_weight(alert, low=0.25, high=0.55, grey_weight=0.35):
+    """
+    - risk >= high      → label 1, weight 1.0 (strong positive)
+    - risk <= low       → label 0, weight 1.0 (clear negative)
+    - low < risk < high → label 1, weight grey_weight (borderline positive)
+    """
+    r = weak_signals(alert)
+    if r >= high:
+        return 1, 1.0
+    if r <= low:
+        return 0, 1.0
+    return 1, float(grey_weight)
+
+
+def weak_label(alert):
+    d = alert.get("data", {}) or {}
+    r = alert.get("rule", {}) or {}
+
+    # helpers
+    def _to_int(x, default=0):
+        try: return int(str(x))
+        except: return default
+
+    lvl = _to_int(r.get("level"), 0)
+    sev = (d.get("severity") or "").lower()
+    apprisk = (d.get("apprisk") or "").lower()
+    dstport = _to_int(d.get("dstport"), 0)
+    sent = _to_int(d.get("sentbyte"), 0)
+    rcvd = _to_int(d.get("rcvdbyte"), 0)
+    dur = _to_int(d.get("duration"), 0)
+    action = (d.get("action") or "").lower()
+    subtype = (d.get("subtype") or "").lower()
+    service = (d.get("service") or "").upper()
+
+    bytes_total = sent + rcvd
+    sensitive_ports = {22,3389,5985,5986,445}
+
+    # --- CLEAR POSITIVES ---
+    if lvl >= 6: return 1
+    if sev in {"high","critical"}: return 1
+    if apprisk in {"high","elevated"}: return 1
+    if dstport in sensitive_ports and action != "dropped": return 1
+    if subtype in {"malware"}: return 1
+    if bytes_total > 2_000_000 or dur > 3600: return 1
+
+    # --- BORDERLINE (we'll handle in B/C below) ---
+    # return 0 here; B/C will upweight or resample near-cases
+    return 0
+
+def main():
+    # Load data (OpenStack → local fallback)
+    if OPENSTACK_ENABLED:
+        try:
+            logs = load_parts_openstack()
+            if not logs: raise RuntimeError("No objects returned from OpenStack")
+            print(f"[train] Loaded {len(logs)} alerts from OpenStack.")
+        except Exception as e:
+            print(f"[train] OpenStack unavailable ({e}); falling back to local files …")
+            logs = load_parts_local(PARTS_GLOB)
+    else:
+        logs = load_parts_local(PARTS_GLOB)
+
+    if not logs:
+        raise SystemExit("[train] No training logs found.")
+    
+'''
+    rows = []
+    for a in logs:
+        f = to_features(a)
+        f["label"] = weak_label(a)
+        rows.append(f)
+    df = pd.DataFrame(rows)
+
+    y = df["label"].values
+    X = df.drop(columns=["label"])
+    feature_names = list(X.columns)
+'''
+
+    rows = []; weights = []
+    for a in logs:
+        f = to_features(a)        # your existing feature builder
+        y, w = weak_label_and_weight(a)  # new
+        f["label"] = y
+        rows.append(f)
+        weights.append(w)
+    
+    df = pd.DataFrame(rows)
+    X = df.drop(columns=["label"]).values
+    y = df["label"].values
+    sw = np.array(weights, dtype=float)
+
+
+    # Class balance check
+    classes, counts = np.unique(y, return_counts=True)
+    print("[train] Class distribution:", dict(zip(classes.tolist(), counts.tolist())))
+    if len(classes) < 2:
+        raise SystemExit("[train] Only one class found; adjust weak_label or add more data.")
+
+    Xtr, Xte, ytr, yte = train_test_split(X.values, y, test_size=0.2, random_state=42, stratify=y)
+
+    # Balanced RF + calibration for better probabilities
+    base = RandomForestClassifier(
+        n_estimators=200,
+        max_depth=None,
+        class_weight="balanced",
+        random_state=42,
+        n_jobs=-1
+    )
+    model = CalibratedClassifierCV(base, method="sigmoid", cv=3)
+    model.fit(Xtr, ytr)
+
+    print(classification_report(yte, model.predict(Xte)))
+    os.makedirs(os.path.dirname(MODEL_PATH), exist_ok=True)
+    joblib.dump(model, MODEL_PATH)
+    print(f"[train] Model saved to {MODEL_PATH}")
+
+    # Save background for SHAP Kernel fallback + feature names
+    bg_n = min(1000, Xtr.shape[0])
+    np.save(SHAP_BG_PATH, Xtr[:bg_n])
+    with open(FEAT_NAMES_PATH, "w", encoding="utf-8") as f:
+        _json.dump(feature_names, f)
+    print(f"[train] Saved SHAP background to {SHAP_BG_PATH} and feature names to {FEAT_NAMES_PATH}")
+
+    # after saving model.pkl
+    print(f"[train] Model saved to {MODEL_PATH}")
+    
+    # === NEW: summarize SHAP background to K prototypes (much faster Kernel SHAP) ===
+    import shap
+    K = int(os.getenv("SHAP_BG_K", "60"))      # tune 30–100; 60 is a good default
+    bg_n = min(20000, Xtr.shape[0])            # pool to sample/summarize from
+    bg_pool = Xtr[:bg_n]
+    bg_summary = shap.kmeans(bg_pool, K)       # returns a Dataset-like summary
+    np.save(SHAP_BG_PATH, bg_summary.data)
+    print(f"[train] Saved SHAP k-means background (K={K}) to {SHAP_BG_PATH}")
+    
+    # also persist feature order (already there in your previous version)
+    with open(FEAT_NAMES_PATH, "w", encoding="utf-8") as f:
+        _json.dump(feature_names, f)
+    print(f"[train] Saved feature names to {FEAT_NAMES_PATH}")
+
+
+if __name__ == "__main__":
+    main()
