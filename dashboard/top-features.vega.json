@@ -5,43 +5,35 @@
     {
       "name": "raw",
       "url": {
-        "%context%": true,
-        "%timefield%": "@timestamp",
+        "%context%": false,
         "index": "wazuh-explain-v1",
         "body": {
-          "size": 0,
-          "query": { "bool": { "filter": [ { "match_all": {} } ] } },
-          "aggs": {
-            "feat": {
-              "nested": { "path": "top_features" },
-              "aggs": {
-                "by_feat": {
-                  "terms": { "field": "top_features.feature", "size": 15 },
-                  "aggs": { "impact": { "sum": { "field": "top_features.contribution" } } }
-                }
-              }
-            }
-          }
+          "size": 1,
+          "sort": [ { "timestamp": { "order": "desc" } } ],
+          "_source": ["top_features"]
         }
       },
-      "format": { "property": "aggregations.feat.by_feat.buckets" }
+      "format": { "property": "hits.hits" }
     },
     {
       "name": "features",
+      "source": "raw",
       "transform": [
-        { "type": "formula", "as": "feature", "expr": "datum.key" },
-        { "type": "formula", "as": "contribution", "expr": "datum.impact.value" },
-        { "type": "collect", "sort": {"field": "contribution", "order": "descending"} }
+        { "type": "formula", "as": "tf", "expr": "datum._source.top_features ? datum._source.top_features : []" },
+        { "type": "flatten", "fields": ["tf"], "as": ["item"] },
+        { "type": "formula", "as": "feature", "expr": "datum.item.feature" },
+        { "type": "formula", "as": "impact", "expr": "datum.item.impact" },
+        { "type": "collect", "sort": {"field": "impact", "order": "descending"} }
       ]
     }
   ],
   "scales": [
     { "name": "y", "type": "band", "domain": {"data":"features","field":"feature"}, "range":"height", "padding":0.2 },
-    { "name": "x", "type": "linear", "domain": {"data":"features","field":"contribution"}, "nice": true, "range": "width" }
+    { "name": "x", "type": "linear", "domain": {"data":"features","field":"impact"}, "nice": true, "range": "width" }
   ],
   "axes": [
     { "orient": "left", "scale": "y" },
-    { "orient": "bottom", "scale": "x", "title": "Contribution (±)" }
+    { "orient": "bottom", "scale": "x", "title": "SHAP Impact Value" }
   ],
   "marks": [
     {
@@ -52,19 +44,11 @@
           "y": {"scale":"y", "field":"feature"},
           "height": {"scale":"y","band":1},
           "x": {"scale":"x","value":0},
-          "x2": {"scale":"x","field":"contribution"}
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": {"data":"features"},
-      "encode": {
-        "enter": {
-          "y": {"scale":"y", "field":"feature", "band":0.5},
-          "x": {"scale":"x", "field":"contribution", "offset": 6},
-          "baseline": {"value":"middle"},
-          "text": {"signal":"format(datum.contribution, '.3f')"}
+          "x2": {"scale":"x","field":"impact"},
+          "fill": [
+            {"test": "datum.impact > 0", "value": "#dc2626"},
+            {"value": "#16a34a"}
+          ]
         }
       }
     }
