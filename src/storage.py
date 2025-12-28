@@ -11,14 +11,29 @@ class StorageManager:
     def __init__(self, mode: str = "local"):
         self.mode = mode.lower()
         os.makedirs(OUT_DIR, exist_ok=True)
+        
         if self.mode == "opensearch":
             from opensearchpy import OpenSearch
-            host = os.getenv("OPENSEARCH_HOST","localhost")
-            port = int(os.getenv("OPENSEARCH_PORT","9200"))
-            verify = os.getenv("OPENSEARCH_SSL_VERIFY","false").lower()=="true"
-            self.index = os.getenv("OPENSEARCH_INDEX","explanations-v1")
-            self.index_feedback = os.getenv("OPENSEARCH_INDEX_FEEDBACK","explain-feedback-v1")
-            self.os = OpenSearch(hosts=[{"host":host,"port":port,"scheme":"https" if verify else "http"}], verify_certs=verify)
+            
+            # Load Config
+            host = os.getenv("OPENSEARCH_HOST", "localhost")
+            port = int(os.getenv("OPENSEARCH_PORT", "9200"))
+            verify = os.getenv("OPENSEARCH_SSL_VERIFY", "false").lower() == "true"
+            
+            # Load Credentials (THIS WAS MISSING)
+            user = os.getenv("OPENSEARCH_USERNAME", "admin")
+            password = os.getenv("OPENSEARCH_PASSWORD", "SecretPassword")
+            
+            self.index = os.getenv("OPENSEARCH_INDEX", "wazuh-explain-v1")
+            self.index_feedback = os.getenv("OPENSEARCH_INDEX_FEEDBACK", "explain-feedback-v1")
+            
+            # Connect with Auth + Force HTTPS
+            self.os = OpenSearch(
+                hosts=[{"host": host, "port": port, "scheme": "https"}],
+                http_auth=(user, password),  # <--- PASS CREDENTIALS HERE
+                verify_certs=verify,
+                ssl_show_warn=False
+            )
         else:
             self.os = None
 
