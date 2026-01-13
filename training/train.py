@@ -24,6 +24,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import classification_report
+from sklearn.metrics import average_precision_score, precision_recall_curve
 
 # -------- ENV / paths --------
 OPENSTACK_ENABLED = os.getenv("OPENSTACK_ENABLED", "false").lower() == "true"
@@ -101,7 +102,7 @@ def weak_signals(alert: dict) -> float:
 
     return min(score, 1.0)
 
-def weak_label_and_weight(alert: dict, low: float = 0.25, high: float = 0.55, grey_weight: float = 0.35) -> tuple[int, float]:
+def weak_label_and_weight(alert: dict, low: float = 0.25, high: float = 0.45, grey_weight: float = 0.35) -> tuple[int, float]:
     """
     - risk >= high      → strong positive (label=1, weight=1.0)
     - risk <= low       → clear negative (label=0, weight=1.0)
@@ -170,16 +171,28 @@ def main():
 
     # 5) Train balanced RF with sample_weight; then calibrate (prefit) on validation set
     base = RandomForestClassifier(
-        n_estimators=300,
-        max_depth=None,
+        n_estimators=600,
+        max_depth=6,
         random_state=42,
         n_jobs=-1,
+        class_weight="balanced_subsample",  # balanced_subsample - handle any residual imbalance
+        min_samples_leaf=80, #SOC data is noisy; larger leaves help
         # class_weight=None  # we provide per-sample weights
     )
     base.fit(X_tr, y_tr, sample_weight=sw_tr)
 
-    cal = CalibratedClassifierCV(base, method="sigmoid", cv="prefit")
+    cal = CalibratedClassifierCV(base, method="sigmoid", cv="prefit") # can replace isotonic with the sigmoid method Sigmoid is smoother and safer with limited data. Isotonic can fit better but overfits with small calibration sets.
     cal.fit(X_val, y_val)  # calibration; sklearn doesn't accept weights here
+
+    proba = cal.predict_proba(X_te)[:,1]
+    ap = average_precision_score(y_te, proba)
+    print("[eval] AUPRC (Average Precision):", ap)
+
+    # Choose threshold by top-K rate (e.g., flag top 1% as suspicious)
+    thr = np.quantile(proba, 0.99)
+    y_hat = (proba >= thr).astype(int)
+    print("[eval] Threshold (top 1%):", thr)
+    print(classification_report(y_te, y_hat, digits=3, zero_division=0))
 
     print(classification_report(y_te, cal.predict(X_te)))
     Path(MODEL_PATH).parent.mkdir(parents=True, exist_ok=True)
