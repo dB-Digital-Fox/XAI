@@ -1,6 +1,7 @@
 # training/train.py
 #weighted grey-positives + OpenStack→local fallback + calibrated RF + SHAP k-means background
 from __future__ import annotations
+from shap.plots._labels import labels
 import os, sys, glob, json
 from pathlib import Path
 import numpy as np
@@ -25,6 +26,10 @@ from sklearn.model_selection import train_test_split
 from sklearn.calibration import CalibratedClassifierCV
 from sklearn.metrics import classification_report
 from sklearn.metrics import average_precision_score, precision_recall_curve
+from src.features import extract_features, get_feature_names
+
+# load the feature map form features.py
+from src.features import get_feature_names
 
 # -------- ENV / paths --------
 OPENSTACK_ENABLED = os.getenv("OPENSTACK_ENABLED", "false").lower() == "true"
@@ -102,7 +107,7 @@ def weak_signals(alert: dict) -> float:
 
     return min(score, 1.0)
 
-def weak_label_and_weight(alert: dict, low: float = 0.25, high: float = 0.45, grey_weight: float = 0.35) -> tuple[int, float]:
+def weak_label_and_weight(alert: dict, low: float = 0.15, high: float = 0.35, grey_weight: float = 0.35) -> tuple[int, float]:
     """
     - risk >= high      → strong positive (label=1, weight=1.0)
     - risk <= low       → clear negative (label=0, weight=1.0)
@@ -117,6 +122,8 @@ def weak_label_and_weight(alert: dict, low: float = 0.25, high: float = 0.45, gr
 
 # -------- Main training --------
 def main():
+
+
     # 1) Load alerts (OpenStack → local fallback)
     if OPENSTACK_ENABLED:
         try:
@@ -135,31 +142,65 @@ def main():
 
     # 2) Build feature rows + labels + sample weights
     rows: list[dict] = []
+    labels: list[int] = []
     weights: list[float] = []
+
+    n_bad = 0
     for a in logs:
-        feats = extract_features(a)          # <-- uses your src.features (keeps train/serve aligned)
-        y, w = weak_label_and_weight(a)      # <-- Option B
-        feats["label"] = y
-        rows.append(feats)
-        weights.append(w)
+        try:
+            feats = extract_features(a)            # map-aware
+            y, w = weak_label_and_weight(a)        # Option B
+            # enforce int/bool labels safely
+            y = int(1 if y else 0)
+            w = float(w)
+            rows.append(feats)
+            labels.append(y)
+            weights.append(w)
+        except Exception as e:
+            n_bad += 1
+
+    if not rows:
+        raise SystemExit(f"[train] No usable rows (bad={n_bad}). Check PARTS_GLOB/OpenStack and weak labels.")
 
     df = pd.DataFrame(rows)
-    if "label" not in df.columns:
-        raise SystemExit("[train] No 'label' column after feature extraction.")
+    feature_names = get_feature_names()
 
-    y = df["label"].values
-    X = df.drop(columns=["label"])
-    feature_names = list(X.columns)
-    X = X.values
+    # Ensure all expected columns exist; add missing as zeros
+    for col in feature_names:
+        if col not in df.columns:
+            df[col] = 0.0
+
+    # Strict schema: keep only expected features and in the expected order
+    df = df[feature_names].copy()
+
+    # Attach labels (must match length)
+    if len(labels) != len(df):
+        raise SystemExit(f"[train] Label length mismatch: labels={len(labels)} df={len(df)} (bad=   {n_bad})")
+
+    df["label"] = labels
+
+    # Remove any NaNs defensively (should not happen)
+    before = len(df)
+    df = df.dropna(subset=["label"])
+    after = len(df)
+    if after < before:
+        print(f"[train] Dropped {before - after} rows with NaN labels.")
+
+    # Final matrices
+    y = df["label"].astype(int).values
+    X = df.drop(columns=["label"]).astype(float).values
     sw = np.array(weights, dtype=float)
 
-    # 3) Class balance sanity
+    # Sanity assertions
+    assert X.shape[0] == y.shape[0] == sw.shape[0], f"len mismatch X={X.shape} y={y.shape} sw={sw.  shape}"
+    assert X.shape[1] == len(feature_names), f"width mismatch X={X.shape[1]} vs names={len  (feature_names)}"
+
+    # Diagnostics to understand current balance
     classes, counts = np.unique(y, return_counts=True)
     print("[train] Class distribution:", dict(zip(classes.tolist(), counts.tolist())))
-    pos_rate = float((y == 1).mean())
-    print(f"[train] Positive rate: {pos_rate:.3f}")
+    print(f"[train] Positive rate: {float((y==1).mean()):.3f}")
     if len(classes) < 2:
-        raise SystemExit("[train] Only one class present. Tweak weak_label_and_weight thresholds or add diverse data.")
+        raise SystemExit("[train] Only one class present. Adjust weak_label_and_weight thresholds or    add more data.")
 
     # 4) Split (train/val/test) with stratification; keep weights in sync
     X_tr, X_tmp, y_tr, y_tmp, sw_tr, sw_tmp = train_test_split(

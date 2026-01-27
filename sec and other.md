@@ -47,3 +47,33 @@ Ship
 - Copy the produced src/model_api/model.joblib into the API, restart the container.
 
 - SHAP/LIME explanations will start populating wazuh-explain-v1.
+
+Manual: how to make the feature set larger (safely)
+
+Add canonical fields in _canonicalize:
+
+Examples: src_country_risk, internal_to_internal, user_risk_score, device_risk_score, geo_distance_km, asn_reputation, rolling_auth_fail_5m, etc.
+
+All canonical fields are plain numbers or 0/1 flags.
+
+Expose new fields in the feature map:
+
+Append new entries to config/feature_map.yaml (or JSON) in the exact order you want the model to see.
+
+Keep names short, stable, snake_case.
+
+Retrain once:
+
+Delete training/feature_names.json (it will be regenerated).
+
+Train; the API will then use the new order automatically.
+
+Version control the feature map:
+
+Treat it like schema. If you remove features, retrain, and restart the API to avoid length mismatches.
+
+Guardrails:
+
+Always coerce to numeric in _apply_feature_map (already done).
+
+For rolling counters (e.g., auth_fail_5m), calculate upstream or add a pre-processor in your data ingestion.

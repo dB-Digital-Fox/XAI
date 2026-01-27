@@ -1,6 +1,6 @@
 # === APP BACKEND ===
 # Storage mode for explanations/feedback: "local" (default) OR "opensearch"
-STORAGE_MODE=opensearch
+STORAGE_MODE=local
 
 # If you later switch to OpenSearch, fill these:
 OPENSEARCH_HOST=localhost
@@ -12,3 +12,7 @@ OPENSEARCH_SSL_VERIFY=false
 # Default Wazuh Docker credentials
 OPENSEARCH_USERNAME=admin
 OPENSEARCH_PASSWORD=SecretPassword
+
+# Other Configs
+FEATURE_MAP_PATH=./config/feature_map.yaml
+POLICY_MAP_PATH=./config/policy_map.yaml

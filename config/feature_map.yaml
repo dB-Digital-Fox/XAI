@@ -1,0 +1,64 @@
+schema_version: 1
+features:
+  # Core model signals
+  - { name: rule_level,        path: rule_level,        default: 0 }
+  - { name: severity_ord,      path: severity_ord,      default: 0 }
+  - { name: bytes_sent,        path: bytes_sent,        default: 0 }
+  - { name: bytes_recv,        path: bytes_recv,        default: 0 }
+  - { name: bytes_total,       path: bytes_total,       default: 0 }
+  - { name: duration_sec,      path: duration_sec,      default: 0 }
+
+  # L4 / ports / services
+  - { name: proto_tcp,         path: proto_tcp,         default: 0 }
+  - { name: proto_udp,         path: proto_udp,         default: 0 }
+  - { name: proto_icmp,        path: proto_icmp,        default: 0 }
+  - { name: dst_port,          path: dst_port,          default: 0 }
+  - { name: port_bucket_low,   path: port_bucket_low,   default: 0 }   # 0–1023
+  - { name: port_bucket_mid,   path: port_bucket_mid,   default: 0 }   # 1024–49151
+  - { name: port_bucket_high,  path: port_bucket_high,  default: 0 }   # 49152–65535
+  - { name: dst_svc_sensitive, path: dst_svc_sensitive, default: 0 }   # {22,3389,5985,5986,445}
+  - { name: dst_svc_admin,     path: dst_svc_admin,     default: 0 }   # SSH/RDP/WINRM/WMI
+  - { name: service_http,      path: service_http,      default: 0 }
+  - { name: service_https,     path: service_https,     default: 0 }
+  - { name: service_dns,       path: service_dns,       default: 0 }
+  - { name: service_smtp,      path: service_smtp,      default: 0 }
+  - { name: service_snmp,      path: service_snmp,      default: 0 }
+  - { name: service_rdp,       path: service_rdp,       default: 0 }
+  - { name: service_ssh,       path: service_ssh,       default: 0 }
+  - { name: service_winrm,     path: service_winrm,     default: 0 }
+
+  # Authentication context
+  - { name: auth_result_pos,   path: auth_result_pos,   default: 0 }
+  - { name: auth_result_neg,   path: auth_result_neg,   default: 0 }
+  - { name: logon_type_rdp,    path: logon_type_rdp,    default: 0 }
+
+  # Geo / IP hygiene (requires enrichment; defaults are safe)
+  - { name: src_private,       path: src_private,       default: 0 }
+  - { name: dst_private,       path: dst_private,       default: 0 }
+  - { name: geo_src_risk,      path: geo_src_risk,      default: 0 }  # 0..10
+  - { name: geo_dst_risk,      path: geo_dst_risk,      default: 0 }  # 0..10
+  - { name: geo_distance_km,   path: geo_distance_km,   default: 0 }
+  - { name: asn_rep_src,       path: asn_rep_src,       default: 0 }  # 0..10 blacklist/reputation score
+  - { name: asn_rep_dst,       path: asn_rep_dst,       default: 0 }
+
+  # Crypto / TLS / SSH / IPsec (optional; default=0 if unknown)
+  - { name: tls_version_ord,   path: tls_version_ord,   default: 0 }  # 0:none/unknown, 1=TLS1.0, 2=1.1, 3=1.2, 4=1.3
+  - { name: tls_cipher_weak,   path: tls_cipher_weak,   default: 0 }  # 1 if CBC/RC4/3DES etc.
+  - { name: ssh_kex_weak,      path: ssh_kex_weak,      default: 0 }
+  - { name: ipsec_encr_weak,   path: ipsec_encr_weak,   default: 0 }
+  - { name: ipsec_auth_weak,   path: ipsec_auth_weak,   default: 0 }
+
+  # Environment flags
+  - { name: pf_win,            path: pf_win,            default: 0 }
+  - { name: pf_lin,            path: pf_lin,            default: 0 }
+  - { name: pf_nw,             path: pf_nw,             default: 0 }
+  - { name: pf_osks,           path: pf_osks,           default: 0 }
+
+  # Time-of-day (analysts like it)
+  - { name: hour,              path: hour,              default: 0 }
+
+  # Rolling behavior (optional; fill upstream)
+  - { name: auth_fail_5m,      path: auth_fail_5m,      default: 0 }
+  - { name: auth_fail_1h,      path: auth_fail_1h,      default: 0 }
+  - { name: conn_count_5m,     path: conn_count_5m,     default: 0 }
+

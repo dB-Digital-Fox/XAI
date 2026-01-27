@@ -1,6 +1,7 @@
 import os, json, joblib
 import numpy as np
 import shap
+from .policy import load_policy, apply_policy
 
 FEAT_NAMES_PATH = "./training/feature_names.json"
 SHAP_BG_PATH = "./training/shap_bg.npy"
@@ -43,6 +44,28 @@ class Explainer:
                 self.shap_bg = bg
             except Exception:
                 self.shap_bg = None
+
+        # Load policy
+        self.policy = load_policy()
+
+    def _infer_source(self, alert: dict) -> str:
+        dec = (alert.get("decoder", {}) or {}).get("name", "").lower()
+        groups = [g.lower() for g in (alert.get("rule", {}) or {}).get("groups", []) or []]
+        agent  = (alert.get("agent", {}) or {}).get("name", "").lower()
+        full   = " ".join([dec, " ".join(groups), agent])
+        if any(k in full for k in ["fortigate", "cisco", "unifi", "asa", "firewall", "router", "switch"]):
+            return "network"
+        if "windows" in full or "win" in dec or "win" in agent or alert.get("win", {}).get("event"):
+            return "endpoint"
+        if "linux" in full:
+            return "endpoint"
+        if any(k in full for k in ["openstack", "nova", "keystone", "neutron"]):
+            return "server"
+        # Fall back by fields
+        d = (alert.get("data", {}) or {})
+        if d.get("devid") or d.get("subtype") == "ips":
+            return "network"
+        return "server"
 
     def _feature_array(self, feats: dict):
         # Stable order across runs; fall back to dict order if no saved list
@@ -101,13 +124,43 @@ class Explainer:
         else:
             return n_feats
 
-    def explain(self, alert: dict, feats: dict) -> dict:
+    def _append_nonzero_features(
+        self,
+        order: np.ndarray,
+        names: list[str],
+        x: np.ndarray,
+        impacts: np.ndarray,
+        k_limit: int
+    ) -> list[dict]:
+        out = []
+        kept = 0
+        for idx in order:
+            idx = int(idx)
+            val = float(x[idx])
+            imp = float(impacts[idx])
+            # User requested: ignores the features where the values are 0.0 or 1.0
+            if val == 0.0:
+                continue
+            out.append({"feature": names[idx], "value": val, "impact": imp})
+            kept += 1
+            if kept >= k_limit:
+                break
+        return out
+
+    def explain(self, alert: dict, feats: dict, top_k_override: int = None) -> dict:
         names, x = self._feature_array(feats)
         n_feats = len(names)
         score = self.predict_proba(x)
 
-        # Clamp K to what's actually available
-        k = self._clamp_top_k(None, n_feats)
+        # Policy application
+        source = self._infer_source(alert)
+        decision = apply_policy(self.policy, score, source, feats)
+        
+        # Decide K
+        k = self._clamp_top_k(
+            top_k_override if top_k_override is not None else decision.get("top_k", 10), 
+            n_feats
+        )
 
         top = []
         phi = None
@@ -115,19 +168,22 @@ class Explainer:
         if self.model is not None:
             # 1) Try Tree SHAP
             try:
+                print("tree shap")
                 phi = self._shap_tree(x)
             except Exception:
                 phi = None
 
-            # 2) Fallback to Kernel SHAP
-            if phi is None:
+            # 2) Fallback to Kernel SHAP (only if allowed by policy)
+            if phi is None and decision.get("do_shap", True):
                 try:
+                    print("kernel shap")
                     phi = self._shap_kernel(x)
                 except Exception:
                     phi = None
 
             # 3) Feature importances fallback (if no SHAP)
             if phi is None:
+                print("feature importances")
                 base_est = getattr(self.model, "base_estimator_", self.model)
                 if hasattr(base_est, "feature_importances_"):
                     fi = np.array(base_est.feature_importances_, dtype=float).reshape(-1)
@@ -135,41 +191,29 @@ class Explainer:
 
                     # keep only indices that exist in current vector
                     valid = order[order < n_feats]
-                    # clamp to desired K but not beyond available indices
-                    k_fi = min(self._clamp_top_k(None, n_feats), valid.size)
-                    for ii in valid[:k_fi]:
-                        ii = int(ii)
-                        top.append({
-                            "feature": names[ii],
-                            "value": float(x[ii]),
-                            "impact": float(fi[ii])  # safe; ii < len(fi) by construction
-                        })
+                    top = self._append_nonzero_features(valid, names, x, fi, k)
 
         # If we do have SHAP values, rank by |impact| and clamp K again safely
         if phi is not None:
             phi = np.array(phi, dtype=float).reshape(-1)
             order = np.argsort(-np.abs(phi)).astype(int)
-        
-            # keep only indices that exist in current vector
-            valid = order[order < n_feats]
-            k_phi = min(self._clamp_top_k(None, n_feats), valid.size)
-            for ii in valid[:k_phi]:
-                ii = int(ii)
-                top.append({
-                    "feature": names[ii],
-                    "value": float(x[ii]),
-                    "impact": float(phi[ii])  # safe; ii < len(phi)
-                })
+            order = order[order < n_feats]
+            top = self._append_nonzero_features(order, names, x, phi, k)
 
-        label = "malicious" if score >= 0.5 else "benign"
+        label = "malicious" if score >= float(decision.get("threshold", 0.5)) else "benign"
         reason = "Top impact: " + ", ".join([t["feature"] for t in top]) if top else "Model score only"
-        recommendation = "Investigate" if label == "malicious" else "Monitor traffic"
+        recommendation = decision.get("recommendation") or ("Investigate" if label == "malicious" else "Monitor traffic")
+
+        # Filter features to hide 0.0 and 1.0 values
+        filtered_feats = {k: v for k, v in feats.items() if v != 0.0}
 
         return {
+            "alert": alert,
             "model_version": "v0.2",
             "predicted_score": score,
             "predicted_label": label,
             "top_features": top,
+            "features": filtered_feats,
             "reason": reason,
             "recommendation": recommendation,
             "timestamp": alert.get("@timestamp") or alert.get("timestamp")

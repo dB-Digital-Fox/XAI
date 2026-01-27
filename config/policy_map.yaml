@@ -1,0 +1,42 @@
+schema_version: 1
+
+defaults:
+  top_k_min: 10
+  top_k: 12
+  shap_enabled: true
+  shap_min_score: 0.20        # compute SHAP only if score >= 0.20 (speeds up benign floods)
+  kernel_bg_k: 60             # used at train time for SHAP background k-means
+  explanation_fallback: "fi"  # "fi" or "none"
+  min_recommendation: "Monitor traffic"
+
+sources:
+  network:
+    decision_threshold: 0.65
+    bands:
+      - {name: "critical", min: 0.90, tag: "CRITICAL", action: "Page on-call", recommend: "Isolate flow; capture PCAP"}
+      - {name: "high",     min: 0.75, tag: "HIGH",     action: "SOC Triage",  recommend: "Check IPS hits, correlate"}
+      - {name: "medium",   min: 0.55, tag: "MEDIUM",   action: "Queue",       recommend: "Review unusual ports/bytes"}
+    default_tag: "LOW"
+
+  endpoint:
+    decision_threshold: 0.60
+    bands:
+      - {name: "critical", min: 0.85, tag: "CRITICAL", action: "Page IR", recommend: "Isolate host; pull triage kit"}
+      - {name: "high",     min: 0.70, tag: "HIGH",     action: "SOC Triage", recommend: "Check auth bursts, EDR"}
+    default_tag: "LOW"
+
+  server:
+    decision_threshold: 0.70
+    bands:
+      - {name: "critical", min: 0.90, tag: "CRITICAL", action: "Page on-call", recommend: "Quarantine service, review logs"}
+      - {name: "high",     min: 0.75, tag: "HIGH",     action: "SOC Triage",   recommend: "Check lateral movement"}
+    default_tag: "LOW"
+
+# Optional global rules to elevate/downgrade tags based on context
+overrides:
+  - when: { dst_svc_sensitive: 1, action: "allowed" }
+    elevate_to: "HIGH"
+  - when: { pf_osks: 1, severity_ord: ">=2" }
+    elevate_to: "HIGH"
+  - when: { service_snmp: 1, action: "dropped", severity_ord: "<=1" }
+    downgrade_to: "LOW"
