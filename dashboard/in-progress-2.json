@@ -1,0 +1,1261 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 1920,
+  "height": 1000,
+  "padding": 16,
+  "data": [
+    {
+      "name": "alerts",
+      "url": {
+        "%context%": true,
+        "%timefield%": "timestamp",
+        "index": "wazuh-explain-v2",
+        "body": {
+          "size": 200,
+          "sort": [
+            {
+              "timestamp": {
+                "order": "desc"
+              }
+            }
+          ],
+          "_source": {
+            "includes": [
+              "timestamp",
+              "@ingested_at",
+              "doc_id",
+              "predicted_score",
+              "predicted_label",
+              "top_features",
+              "features",
+              "reason",
+              "recommendation",
+              "alert.timestamp",
+              "alert.id",
+              "alert.agent.name",
+              "alert.rule.level",
+              "alert.rule.description",
+              "alert.rule.groups",
+              "alert.data.srcip",
+              "alert.data.dstip",
+              "alert.data.dstport",
+              "alert.data.service",
+              "alert.data.action",
+              "alert.data.severity",
+              "alert.full_log"
+            ]
+          }
+        }
+      },
+      "format": {
+        "property": "hits.hits"
+      },
+      "transform": [
+        {
+          "type": "formula",
+          "as": "src",
+          "expr": "datum['_source']"
+        },
+        {
+          "type": "formula",
+          "as": "ts_raw",
+          "expr": "datum.src.timestamp ? datum.src.timestamp : (datum.src.alert && datum.src.alert.timestamp ? datum.src.alert.timestamp : null)"
+        },
+        {
+          "type": "formula",
+          "as": "ts_date",
+          "expr": "datum.ts_raw ? timeParse(datum.ts_raw, '%Y-%m-%dT%H:%M:%S.%L%z') : null"
+        },
+        {
+          "type": "formula",
+          "as": "score",
+          "expr": "isValid(datum.src.predicted_score) ? toNumber(datum.src.predicted_score) : 0"
+        },
+        {
+          "type": "formula",
+          "as": "score_pct",
+          "expr": "round(datum.score*1000)/10"
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.src.predicted_label ? datum.src.predicted_label : 'N/A'"
+        },
+        {
+          "type": "formula",
+          "as": "agent",
+          "expr": "datum.src.alert && datum.src.alert.agent && datum.src.alert.agent.name ? datum.src.alert.agent.name : ''"
+        },
+        {
+          "type": "formula",
+          "as": "rule_desc",
+          "expr": "datum.src.alert && datum.src.alert.rule && datum.src.alert.rule.description ? datum.src.alert.rule.description : ''"
+        },
+        {
+          "type": "formula",
+          "as": "snippet",
+          "expr": "datum.src.alert && datum.src.alert.full_log ? (length(datum.src.alert.full_log) > 110 ? slice(datum.src.alert.full_log,0,110) + '…' : datum.src.alert.full_log) : datum.rule_desc"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "rank"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "paged_alerts",
+      "source": "alerts",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.rank > ((page-1)*pageSize) && datum.rank <= (page*pageSize)"
+        }
+      ]
+    },
+    {
+      "name": "selected",
+      "source": "alerts",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "length(data('alerts')) > 0 && datum.rank === selIdx"
+        }
+      ]
+    },
+    {
+      "name": "selected_top",
+      "source": "selected",
+      "transform": [
+        {
+          "type": "formula",
+          "as": "tfArr",
+          "expr": "datum.src && datum.src.top_features ? datum.src.top_features : []"
+        },
+        {
+          "type": "flatten",
+          "fields": [
+            "tfArr"
+          ],
+          "as": [
+            "tf"
+          ]
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum.tf) && isValid(datum.tf.feature) && isValid(datum.tf.impact)"
+        },
+        {
+          "type": "filter",
+          "expr": "!(isValid(datum.tf.value) && abs(toNumber(datum.tf.value)) <= 0.0)"
+        },
+        {
+          "type": "formula",
+          "as": "feature",
+          "expr": "datum.tf.feature"
+        },
+        {
+          "type": "formula",
+          "as": "value",
+          "expr": "isValid(datum.tf.value) ? toNumber(datum.tf.value) : 0"
+        },
+        {
+          "type": "formula",
+          "as": "impact",
+          "expr": "toNumber(datum.tf.impact)"
+        },
+        {
+          "type": "formula",
+          "as": "absImpact",
+          "expr": "abs(datum.impact)"
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "absImpact",
+            "order": "descending"
+          }
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "row"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "shap_stats",
+      "source": "selected_top",
+      "transform": [
+        {
+          "type": "aggregate",
+          "fields": [
+            "absImpact"
+          ],
+          "ops": [
+            "max"
+          ],
+          "as": [
+            "maxAbs"
+          ]
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "gaugeColor",
+      "type": "linear",
+      "domain": [
+        0,
+        1
+      ],
+      "range": [
+        "#16a34a",
+        "#dc2626"
+      ]
+    }
+  ],
+  "signals": [
+    {
+      "name": "pageSize",
+      "value": 18
+    },
+    {
+      "name": "page",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
+    },
+    {
+      "name": "selIdx",
+      "value": 1
+    },
+    {
+      "name": "selected_src",
+      "update": "length(data('selected')) > 0 ? data('selected')[0].src : {}"
+    },
+    {
+      "name": "sel_doc_id",
+      "update": "selected_src.doc_id ? selected_src.doc_id : ''"
+    },
+    {
+      "name": "sel_score",
+      "update": "isValid(selected_src.predicted_score) ? toNumber(selected_src.predicted_score) : 0"
+    },
+    {
+      "name": "sel_score_pct",
+      "update": "round(sel_score*1000)/10"
+    },
+    {
+      "name": "sel_label",
+      "update": "selected_src.predicted_label ? selected_src.predicted_label : 'N/A'"
+    },
+    {
+      "name": "sel_rule_desc",
+      "update": "selected_src.alert && selected_src.alert.rule && selected_src.alert.rule.description ? selected_src.alert.rule.description : ''"
+    },
+    {
+      "name": "sel_srcip",
+      "update": "selected_src.alert && selected_src.alert.data && selected_src.alert.data.srcip ? selected_src.alert.data.srcip : ''"
+    },
+    {
+      "name": "sel_dstip",
+      "update": "selected_src.alert && selected_src.alert.data && selected_src.alert.data.dstip ? selected_src.alert.data.dstip : ''"
+    },
+    {
+      "name": "sel_service",
+      "update": "selected_src.alert && selected_src.alert.data && selected_src.alert.data.service ? selected_src.alert.data.service : ''"
+    },
+    {
+      "name": "sel_dstport",
+      "update": "selected_src.alert && selected_src.alert.data && selected_src.alert.data.dstport ? selected_src.alert.data.dstport : ''"
+    },
+    {
+      "name": "sel_action",
+      "update": "selected_src.alert && selected_src.alert.data && selected_src.alert.data.action ? selected_src.alert.data.action : ''"
+    },
+    {
+      "name": "sel_severity",
+      "update": "selected_src.alert && selected_src.alert.data && selected_src.alert.data.severity ? selected_src.alert.data.severity : ''"
+    },
+    {
+      "name": "sel_reason",
+      "update": "selected_src.reason ? selected_src.reason : '—'"
+    },
+    {
+      "name": "sel_recommendation",
+      "update": "selected_src.recommendation ? selected_src.recommendation : '—'"
+    },
+    {
+      "name": "fb_helpful",
+      "value": "yes",
+      "bind": {
+        "input": "radio",
+        "options": [
+          "yes",
+          "no"
+        ]
+      }
+    },
+    {
+      "name": "fb_trust",
+      "value": 70,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 100,
+        "step": 5
+      }
+    },
+    {
+      "name": "fb_comment",
+      "value": "",
+      "bind": {
+        "input": "text"
+      }
+    },
+    {
+      "name": "submit_now",
+      "value": false
+    }
+  ],
+  "marks": [
+    {
+      "type": "group",
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 16
+          },
+          "y": {
+            "value": 16
+          },
+          "width": {
+            "value": 600
+          },
+          "height": {
+            "value": 968
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Logs"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 500
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "signal": "'Page: ' + page"
+              }
+            }
+          }
+        },
+        {
+          "type": "group",
+          "from": {
+            "data": "paged_alerts"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 40
+              }
+            }
+          },
+          "marks": [
+            {
+              "type": "rect",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 0
+                  },
+                  "y": {
+                    "signal": "(datum.rank-((page-1)*pageSize)-1)*52"
+                  },
+                  "width": {
+                    "value": 580
+                  },
+                  "height": {
+                    "value": 48
+                  },
+                  "cornerRadius": {
+                    "value": 6
+                  },
+                  "stroke": {
+                    "value": "#d1d5db"
+                  },
+                  "fillOpacity": {
+                    "value": 0
+                  }
+                },
+                "update": {
+                  "fill": {
+                    "value": "#111827"
+                  },
+                  "fillOpacity": {
+                    "signal": "datum.rank===selIdx ? 0.06 : 0"
+                  }
+                },
+                "hover": {
+                  "fillOpacity": {
+                    "value": 0.04
+                  },
+                  "cursor": {
+                    "value": "pointer"
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 10
+                  },
+                  "fontSize": {
+                    "value": 12
+                  }
+                },
+                "update": {
+                  "y": {
+                    "signal": "(datum.rank-((page-1)*pageSize)-1)*52 + 16"
+                  },
+                  "text": {
+                    "signal": "(datum.ts_date ? timeFormat(datum.ts_date, '%Y-%m-%d %H:%M:%S') : '—') + '  ·  ' + format(datum.score, '.3f') + '  ·  ' + datum.label + (datum.agent ? ('  ·  ' + datum.agent) : '')"
+                  },
+                  "fontWeight": {
+                    "signal": "datum.rank===selIdx ? 'bold' : 'normal'"
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 10
+                  },
+                  "fontSize": {
+                    "value": 11
+                  },
+                  "fill": {
+                    "value": "#6b7280"
+                  }
+                },
+                "update": {
+                  "y": {
+                    "signal": "(datum.rank-((page-1)*pageSize)-1)*52 + 36"
+                  },
+                  "text": {
+                    "signal": "datum.snippet"
+                  }
+                }
+              }
+            },
+            {
+              "type": "rect",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 0
+                  },
+                  "y": {
+                    "signal": "(datum.rank-((page-1)*pageSize)-1)*52"
+                  },
+                  "width": {
+                    "value": 580
+                  },
+                  "height": {
+                    "value": 48
+                  },
+                  "fillOpacity": {
+                    "value": 0
+                  }
+                }
+              },
+              "on": [
+                {
+                  "events": "click",
+                  "update": "selIdx = datum.rank"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 640
+          },
+          "y": {
+            "value": 16
+          },
+          "width": {
+            "value": 760
+          },
+          "height": {
+            "value": 968
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Features & Scoring"
+              }
+            }
+          }
+        },
+        {
+          "type": "group",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 36
+              }
+            }
+          },
+          "marks": [
+            {
+              "type": "arc",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 90
+                  },
+                  "y": {
+                    "value": 90
+                  },
+                  "innerRadius": {
+                    "value": 54
+                  },
+                  "outerRadius": {
+                    "value": 74
+                  },
+                  "startAngle": {
+                    "value": -1.5707963267948966
+                  },
+                  "endAngle": {
+                    "value": 1.5707963267948966
+                  },
+                  "fill": {
+                    "value": "#e5e7eb"
+                  }
+                }
+              }
+            },
+            {
+              "type": "arc",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 90
+                  },
+                  "y": {
+                    "value": 90
+                  },
+                  "innerRadius": {
+                    "value": 54
+                  },
+                  "outerRadius": {
+                    "value": 74
+                  },
+                  "startAngle": {
+                    "value": -1.5707963267948966
+                  }
+                },
+                "update": {
+                  "endAngle": {
+                    "signal": "-1.5707963267948966 + (sel_score * 3.141592653589793)"
+                  },
+                  "fill": {
+                    "scale": "gaugeColor",
+                    "signal": "sel_score"
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 90
+                  },
+                  "y": {
+                    "value": 104
+                  },
+                  "align": {
+                    "value": "center"
+                  },
+                  "fontSize": {
+                    "value": 18
+                  },
+                  "fill": {
+                    "value": "#111827"
+                  }
+                },
+                "update": {
+                  "text": {
+                    "signal": "format(sel_score_pct, '.1f') + '%'"
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 190
+                  },
+                  "y": {
+                    "value": 70
+                  },
+                  "fontSize": {
+                    "value": 14
+                  },
+                  "fill": {
+                    "value": "#374151"
+                  }
+                },
+                "update": {
+                  "text": {
+                    "signal": "sel_label"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 160
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Alert summary"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 182
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#111827"
+              }
+            },
+            "update": {
+              "text": {
+                "signal": "sel_rule_desc + ' | ' + sel_srcip + ' -> ' + sel_dstip + ' | ' + sel_service + ':' + sel_dstport + ' | action=' + sel_action + ' | severity=' + sel_severity"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 216
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Reason"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 238
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#111827"
+              }
+            },
+            "update": {
+              "text": {
+                "signal": "sel_reason"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 272
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Recommendation"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 294
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#111827"
+              }
+            },
+            "update": {
+              "text": {
+                "signal": "sel_recommendation"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 330
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Top feature contributions"
+              }
+            }
+          }
+        },
+        {
+          "type": "group",
+          "from": {
+            "data": "selected_top"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 350
+              }
+            }
+          },
+          "marks": [
+            {
+              "type": "rect",
+              "encode": {
+                "enter": {
+                  "y": {
+                    "signal": "(datum.row-1)*22"
+                  },
+                  "height": {
+                    "value": 18
+                  },
+                  "cornerRadius": {
+                    "value": 4
+                  }
+                },
+                "update": {
+                  "x": {
+                    "value": 0
+                  },
+                  "width": {
+                    "signal": "data('shap_stats').length > 0 && data('shap_stats')[0].maxAbs > 0 ? (abs(datum.impact) / data('shap_stats')[0].maxAbs) * 380 : 0"
+                  },
+                  "fill": {
+                    "value": "#6366f1"
+                  },
+                  "fillOpacity": {
+                    "value": 0.6
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 6
+                  },
+                  "dy": {
+                    "value": 13
+                  },
+                  "fontSize": {
+                    "value": 12
+                  },
+                  "fill": {
+                    "value": "#111827"
+                  }
+                },
+                "update": {
+                  "y": {
+                    "signal": "(datum.row-1)*22"
+                  },
+                  "text": {
+                    "signal": "datum.feature + ' = ' + format(datum.value, '.3f') + '  (' + format(datum.impact, '.4f') + ')'"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 470
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Feedback"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 494
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "text": {
+                "value": "Helpful?"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 120
+              },
+              "y": {
+                "value": 494
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "text": {
+                "signal": "fb_helpful"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 518
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "text": {
+                "value": "Trust (0–100)"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 120
+              },
+              "y": {
+                "value": 518
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "text": {
+                "signal": "fb_trust"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 542
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "text": {
+                "value": "Comment"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 120
+              },
+              "y": {
+                "value": 542
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "text": {
+                "signal": "fb_comment"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 570
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#2563eb"
+              },
+              "text": {
+                "value": "Submit feedback"
+              }
+            }
+          },
+          "hover": {
+            "cursor": {
+              "value": "pointer"
+            }
+          },
+          "on": [
+            {
+              "events": "click",
+              "update": "submit_now = true"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 594
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#6b7280"
+              }
+            }
+          },
+          "update": {
+            "text": {
+              "signal": "submit_now ? ('{\"doc_id\":\"' + sel_doc_id + '\",\"helpful\":\"' + fb_helpful + '\",\"trust\":' + fb_trust + ',\"comment\":\"' + fb_comment + '\"}') : ''"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "encode": {
+        "enter": {
+          "x": {
+            "value": 1420
+          },
+          "y": {
+            "value": 16
+          },
+          "width": {
+            "value": 484
+          },
+          "height": {
+            "value": 968
+          }
+        }
+      },
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Full log"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 46
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#111827"
+              },
+              "width": {
+                "value": 470
+              },
+              "lineBreak": {
+                "value": "\n"
+              }
+            }
+          },
+          "update": {
+            "text": {
+              "signal": "selected_src.alert && selected_src.alert.full_log ? selected_src.alert.full_log : 'No alert.full_log in this index.'"
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 540
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Selected document (JSON)"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 562
+              },
+              "fontSize": {
+                "value": 10
+              },
+              "fill": {
+                "value": "#111827"
+              },
+              "width": {
+                "value": 470
+              },
+              "lineBreak": {
+                "value": "\n"
+              }
+            }
+          },
+          "update": {
+            "text": {
+              "signal": "toString(selected_src)"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

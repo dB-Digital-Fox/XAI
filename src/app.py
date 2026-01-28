@@ -50,7 +50,8 @@ def explain(
         storage.store_explanation({"doc_id": doc_id, **exp})
         return {"ok": True, 
                 "alert": alert,
-                "explanation": {"doc_id": doc_id, **exp}}
+                "raw": alert,
+                "explanation": {"doc_id": doc_id,"raw": alert, **exp}}
     except Exception as e:
         import traceback
         print(traceback.format_exc())
