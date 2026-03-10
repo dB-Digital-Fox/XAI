@@ -1,6 +1,6 @@
 # === APP BACKEND ===
 # Storage mode for explanations/feedback: "local" (default) OR "opensearch"
-STORAGE_MODE=opensearch
+STORAGE_MODE=local
 
 # If you later switch to OpenSearch, fill these:
 OPENSEARCH_HOST=localhost
@@ -16,3 +16,5 @@ OPENSEARCH_PASSWORD=SecretPassword
 # Other Configs
 FEATURE_MAP_PATH=./config/feature_map.yaml
 POLICY_MAP_PATH=./config/policy_map.yaml
+
+LATENCY_LOG_PATH=./data/outputs/latency.jsonl

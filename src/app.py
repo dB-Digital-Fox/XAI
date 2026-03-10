@@ -9,9 +9,13 @@ from .features import extract_features
 from .storage import StorageManager
 from .feedback import FeedbackManager
 
+import time
+import json
+
 load_dotenv(".env.app")
 
 MODE = os.getenv("STORAGE_MODE", "local")  # "local" or "opensearch"
+out_path = os.getenv("LATENCY_LOG_PATH", "./latency.log")
 
 app = FastAPI(title="Explainable SOC Backend (Minimal)")
 
@@ -39,6 +43,7 @@ def explain(
 ):
     alert = body.alert
     try:
+        started = time.perf_counter()
         # 1) Build numeric features
         feats = extract_features(alert)
         
@@ -48,6 +53,14 @@ def explain(
         # 3) Post-process: unique ID and persistence
         doc_id = str(alert.get("id") or int(time.time() * 1000))
         storage.store_explanation({"doc_id": doc_id, **exp})
+        elapsed_ms = (time.perf_counter() - started) * 1000.0
+        record = {
+        "doc_id": str(doc_id) if doc_id is not None else None,
+        "latency_ms": elapsed_ms,
+        }
+        os.makedirs(os.path.dirname(out_path) or ".", exist_ok=True)
+        with open(out_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(record, ensure_ascii=False) + "\n")
         return {"ok": True, 
                 "alert": alert,
                 "raw": alert,
