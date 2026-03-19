@@ -1,0 +1,21 @@
+[Unit]
+Description=Wazuh OpenSearch → XAI Bridge
+Documentation=https://github.com/your-org/xai-plugin
+After=network.target wazuh-manager.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /opt/wazuh-xai-bridge/os_xai_bridge.py --interval 10 --batch 100
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=wazuh-xai-bridge
+
+# Keep state dir writable
+RuntimeDirectory=wazuh-xai-bridge
+StateDirectory=wazuh-xai-bridge
+
+[Install]
+WantedBy=multi-user.target
