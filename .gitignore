@@ -20,6 +20,10 @@ parts/**
 !/outputs/.gitkeep
 !/outputs/**/
 
+/filtered/**
+!/filtered/.gitkeep
+!/filtered/**/
+
 /parts/**
 !/parts/.gitkeep
 !/parts/**/# Virtual environment
