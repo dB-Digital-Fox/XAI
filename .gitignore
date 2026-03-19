@@ -8,6 +8,9 @@ sample/
 outputs/**
 !outputs/.gitkeep
 
+filtered/**
+!filtered/.gitkeep
+
 parts/**
 !parts/.gitkeep# Virtual environment
 .venv/

@@ -52,7 +52,7 @@ def explain(
         
         # 3) Post-process: unique ID and persistence
         doc_id = str(alert.get("id") or int(time.time() * 1000))
-        storage.store_explanation({"doc_id": doc_id, **exp})
+        storage.store_explanation({"doc_id": doc_id,"alert":alert, **exp})
         elapsed_ms = (time.perf_counter() - started) * 1000.0
         record = {
         "doc_id": str(doc_id) if doc_id is not None else None,

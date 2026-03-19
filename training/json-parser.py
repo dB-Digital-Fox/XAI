@@ -3,9 +3,9 @@ import json
 import ijson
 
 # ========== CONFIG ==========
-INPUT_FILE = r"F:\Downloads\json_logs.json\json_logs.json"
-OUTPUT_DIR = r"F:\Desktop\DP-project\Json\max100"
-CHUNK_SIZE = 100          # number of logs per file
+INPUT_FILE = r"F:\Desktop\DP-project\filtered_alerts2.json\filtered_alerts2.json"
+OUTPUT_DIR = r"F:\Desktop\DP-project\Json\filtered"
+CHUNK_SIZE = 200          # number of logs per file
 MAX_FILES = None             # limit (set to None for full file)
 # ============================
 

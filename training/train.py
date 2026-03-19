@@ -34,7 +34,7 @@ from src.features import get_feature_names
 # -------- ENV / paths --------
 OPENSTACK_ENABLED = os.getenv("OPENSTACK_ENABLED", "false").lower() == "true"
 MODEL_PATH        = os.getenv("MODEL_PATH", "./training/model.pkl")
-PARTS_GLOB        = os.getenv("PARTS_GLOB", "./data/parts/part_*.json")
+PARTS_GLOB        = os.getenv("PARTS_GLOB", "./data/filtered/part_*.json")
 SHAP_BG_PATH      = "./training/shap_bg.npy"
 FEAT_NAMES_PATH   = "./training/feature_names.json"
 SHAP_BG_K         = int(os.getenv("SHAP_BG_K", "60"))   # speed/fidelity knob (≈30–100)
@@ -107,7 +107,7 @@ def weak_signals(alert: dict) -> float:
 
     return min(score, 1.0)
 
-def weak_label_and_weight(alert: dict, low: float = 0.15, high: float = 0.35, grey_weight: float = 0.35) -> tuple[int, float]:
+def weak_label_and_weight(alert: dict, low: float = 0.15, high: float = 0.4, grey_weight: float = 0.35) -> tuple[int, float]:
     """
     - risk >= high      → strong positive (label=1, weight=1.0)
     - risk <= low       → clear negative (label=0, weight=1.0)
@@ -213,7 +213,7 @@ def main():
     # 5) Train balanced RF with sample_weight; then calibrate (prefit) on validation set
     base = RandomForestClassifier(
         n_estimators=600,
-        max_depth=6,
+        max_depth=5,
         random_state=42,
         n_jobs=-1,
         class_weight="balanced_subsample",  # balanced_subsample - handle any residual imbalance
@@ -230,7 +230,7 @@ def main():
     print("[eval] AUPRC (Average Precision):", ap)
 
     # Choose threshold by top-K rate (e.g., flag top 1% as suspicious)
-    thr = np.quantile(proba, 0.99)
+    thr = np.quantile(proba, 0.995)
     y_hat = (proba >= thr).astype(int)
     print("[eval] Threshold (top 1%):", thr)
     print(classification_report(y_te, y_hat, digits=3, zero_division=0))
