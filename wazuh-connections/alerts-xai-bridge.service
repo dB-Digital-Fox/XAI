@@ -1,0 +1,18 @@
+[Unit]
+Description=Wazuh alerts.json → XAI Bridge
+After=wazuh-manager.service network.target
+Requires=wazuh-manager.service
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/python3 /opt/wazuh-xai-bridge/alerts_xai_bridge.py --min-level 1
+Restart=on-failure
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=alerts-xai-bridge
+StateDirectory=wazuh-xai-bridge
+
+[Install]
+WantedBy=multi-user.target

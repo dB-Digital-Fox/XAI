@@ -178,27 +178,90 @@ def fetch_new_alerts(since_ts, batch_size):
 
 # ── xai forwarding ────────────────────────────────────────────────────────────
 
+def _reconstruct_nested(source: dict, key: str, default: dict = None) -> dict:
+    """
+    Wazuh alerts in OpenSearch are stored in TWO possible formats
+    depending on the Filebeat/index-template version:
+
+      A) Nested  — source["rule"] = {"level": 5, "id": "2501", ...}
+      B) Flat    — source["rule.level"] = 5, source["rule.id"] = "2501"
+
+    This handles both transparently so build_payload always gets
+    proper nested dicts regardless of how the doc was indexed.
+    """
+    if default is None:
+        default = {}
+
+    # Try native nested key first
+    val = source.get(key)
+    if isinstance(val, dict) and len(val) > 0:
+        return val
+
+    # Reconstruct from dot-notation flat keys
+    built = {}
+    prefix = key + "."
+    for fk, fv in source.items():
+        if fk.startswith(prefix):
+            sub_key = fk[len(prefix):]
+            # Only one level deep — deeper nesting (e.g. data.win.eventdata)
+            # is rare in Wazuh alerts; handle if needed
+            built[sub_key] = fv
+
+    return built if built else default
+
+
 def build_payload(index, doc_id, source):
     """
-    Build the payload POSTed to XAI.
-    XAI expects:  { "alert": { <wazuh alert fields> } }
-    Confirmed from PowerShell evaluation scripts.
+    Reconstruct a proper nested Wazuh alert from an OpenSearch document
+    and wrap it under the "alert" key that XAI expects:
+
+        { "alert": { "id": ..., "rule": {...}, "agent": {...}, "data": {...}, ... } }
+
+    Handles both nested and flat (dot-notation) OpenSearch storage formats.
+    Matches the exact structure used in the PowerShell evaluation scripts.
     """
+    flat_keys = list(source.keys())
+
+    rule       = _reconstruct_nested(source, "rule")
+    agent      = _reconstruct_nested(source, "agent")
+    manager    = _reconstruct_nested(source, "manager")
+    data       = _reconstruct_nested(source, "data")
+    decoder    = _reconstruct_nested(source, "decoder")
+    predecoder = _reconstruct_nested(source, "predecoder")
+
+    # rule.groups must always be a list
+    if "groups" in rule:
+        if isinstance(rule["groups"], str):
+            rule["groups"] = [g.strip() for g in rule["groups"].split(",")]
+        elif not isinstance(rule["groups"], list):
+            rule["groups"] = list(rule["groups"])
+
+    # rule.level must be int (some mappings store it as string)
+    if "level" in rule:
+        try:
+            rule["level"] = int(rule["level"])
+        except (ValueError, TypeError):
+            pass
+
     alert = {
-        "id":        source.get("id", doc_id),
-        "timestamp": source.get("timestamp", ""),
-        "rule":      source.get("rule", {}),
-        "agent":     source.get("agent", {}),
-        "manager":   source.get("manager", {}),
-        "data":      source.get("data", {}),
-        "location":  source.get("location", ""),
-        "full_log":  source.get("full_log", ""),
-        "decoder":   source.get("decoder", {}),
-        "predecoder": source.get("predecoder", {}),
-        # OpenSearch provenance — lets XAI link enriched doc back to raw alert
-        "_os_index":  index,
-        "_os_doc_id": doc_id,
+        "id":          source.get("id", doc_id),
+        "timestamp":   source.get("timestamp") or source.get("@timestamp", ""),
+        "rule":        rule,
+        "agent":       agent,
+        "manager":     manager,
+        "data":        data,
+        "decoder":     decoder,
+        "predecoder":  predecoder,
+        "location":    source.get("location", ""),
+        "full_log":    source.get("full_log", ""),
+        # Keep OS provenance so XAI can link enriched doc back to raw alert
+        "_os_index":   index,
+        "_os_doc_id":  doc_id,
     }
+
+    # Strip keys with empty-dict or None values to keep payload clean
+    alert = {k: v for k, v in alert.items() if v not in (None, {})}
+
     return {"alert": alert}
 
 

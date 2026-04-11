@@ -42,6 +42,7 @@ def explain(
     top_k: Optional[int] = Query(default=None, ge=1, le=50, description="Top features to return"),
 ):
     alert = body.alert
+    print(alert)
     try:
         started = time.perf_counter()
         # 1) Build numeric features

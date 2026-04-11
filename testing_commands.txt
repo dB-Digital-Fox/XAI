@@ -1,0 +1,15 @@
+python .\tools\consistency_check.py `
+  --base-url http://localhost:8080 `
+  --parts ".\data\parts\part_*.json" `
+  --k 100 `
+  --rounds 10 `
+  --random-pick `
+  --out ".\data\outputs\consistency_responses.jsonl"
+
+
+  python .\tools\load_and_report.py `
+  --base-url http://localhost:8080 `
+  --parts ".\data\parts\part_*.json" `
+  --n 1000 --shuffle --sample `
+  --latency-file ".\data\outputs\latency.jsonl" `
+  --only-success

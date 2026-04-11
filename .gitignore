@@ -1,37 +1,15 @@
 # Virtual environment
 .venv/
 
-#samples
+# Samples
 sample/
 
-# Keep folders but ignore contents
-outputs/**
-!outputs/.gitkeep
-
-filtered/**
-!filtered/.gitkeep
-
-parts/**
-!parts/.gitkeep# Virtual environment
-.venv/
-
-# Keep folder names but ignore everything inside except .gitkeep
-/outputs/**
-!/outputs/.gitkeep
-!/outputs/**/
-
-/filtered/**
-!/filtered/.gitkeep
-!/filtered/**/
-
-/parts/**
-!/parts/.gitkeep
-!/parts/**/# Virtual environment
-.venv/
-
-# Keep folder names but ignore everything inside except .gitkeep
+# Keep folders but ignore contents (preserve .gitkeep)
 /data/outputs/**
 !/data/outputs/.gitkeep
+
+/data/filtered/**
+!/data/filtered/.gitkeep
 
 /data/parts/**
 !/data/parts/.gitkeep

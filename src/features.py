@@ -227,21 +227,41 @@ def _platform_flags(source: str) -> Dict[str, int]:
 
 # ---------- source detection ----------
 def _detect_source(alert: Dict[str, Any]) -> str:
-    dec = (alert.get("decoder", {}) or {}).get("name", "").lower()
-    groups = [g.lower() for g in (alert.get("rule", {}) or {}).get("groups", []) or []]
-    agent  = (alert.get("agent", {}) or {}).get("name", "").lower()
-    full   = " ".join([dec, " ".join(groups), agent])
+    dec      = (alert.get("decoder", {}) or {}).get("name", "").lower()
+    groups   = [g.lower() for g in (alert.get("rule", {}) or {}).get("groups", []) or []]
+    agent    = (alert.get("agent", {}) or {}).get("name", "").lower()
+    location = (alert.get("location", "") or "").lower()
+    full_log = (alert.get("full_log", "") or "").lower()
+    full     = " ".join([dec, " ".join(groups), agent, location])
 
+    # ── Network appliances ───────────────────────────────────────────
     if any(k in full for k in ["fortigate", "cisco", "unifi", "asa", "firewall", "router", "switch"]):
         return "fortigate" if "fortigate" in full else ("cisco" if "cisco" in full or "asa" in full else "unifi")
-    if "windows" in full or "win" in dec or "win" in agent or alert.get("win", {}).get("event"):
-        return "windows"
-    if "linux" in full:
-        return "linux"
-    if any(k in full for k in ["openstack", "nova", "keystone", "neutron"]):
-        return "openstack"
     if (alert.get("data", {}) or {}).get("devid") or (alert.get("data", {}) or {}).get("subtype") == "ips":
         return "fortigate"
+
+    # ── Windows ──────────────────────────────────────────────────────
+    if "windows" in full or "win" in dec or "win" in agent or alert.get("win", {}).get("event"):
+        return "windows"
+
+    # ── OpenStack ────────────────────────────────────────────────────
+    if any(k in full for k in ["openstack", "nova", "keystone", "neutron"]):
+        return "openstack"
+
+    # ── Linux syslog sources (sshd, sudo, pam, kernel, dpkg, nginx) ─
+    # These come in as journald or syslog — route to "linux" so
+    # _map_linux can parse full_log for auth signals
+    LINUX_DECODERS = {"sshd", "syslog", "sudo", "pam", "kernel", "dpkg",
+                      "nginx", "apache", "systemd", "journald"}
+    if dec in LINUX_DECODERS or location == "journald":
+        return "linux"
+    if any(k in dec for k in ["sshd", "syslog", "sudo", "pam", "dpkg", "nginx"]):
+        return "linux"
+    if any(k in full for k in ["sshd", "pam_unix", "sudo", "ufw", "dpkg", "journald"]):
+        return "linux"
+    if "linux" in full:
+        return "linux"
+
     return "generic"
 
 # ---------- canonical mappers ----------
@@ -306,27 +326,129 @@ def _map_windows(alert: Dict[str, Any]) -> Dict[str, Any]:
     }
 
 def _map_linux(alert: Dict[str, Any]) -> Dict[str, Any]:
-    msg = (alert.get("full_log") or "").lower()
-    auth_result = 1 if "accepted password" in msg else (0 if "failed password" in msg else -1)
+    """
+    Covers all Wazuh syslog/journald sources:
+      sshd, sudo, pam, kernel/UFW, nginx/apache, dpkg, systemd
+    Extracts auth_result, src_ip, dst_port, service_label, action,
+    threat_family and severity_ord from full_log + rule metadata.
+    """
+    msg  = (alert.get("full_log") or "").lower()
+    r    = alert.get("rule", {}) or {}
+    d    = alert.get("data", {}) or {}
+    dec  = (alert.get("decoder", {}) or {}).get("name", "").lower()
+    groups = [g.lower() for g in (r.get("groups", []) or [])]
+    rule_level = _to_int(r.get("level"), 0)
+
+    # ── auth_result ───────────────────────────────────────────────────
+    auth_result = -1
+    if any(k in msg for k in ["accepted password", "accepted publickey", "session opened"]):
+        auth_result = 1
+    elif any(k in msg for k in ["failed password", "authentication failure",
+                                  "invalid user", "connection closed", "preauth",
+                                  "command not allowed"]):
+        auth_result = 0
+
+    # ── src_ip: try data first, then parse from full_log ─────────────
+    src_ip = d.get("srcip") or d.get("src_ip") or ""
+    if not src_ip:
+        import re
+        m = re.search(r"from\s+([\d]{1,3}\.[\d]{1,3}\.[\d]{1,3}\.[\d]{1,3})", msg)
+        if m:
+            src_ip = m.group(1)
+
+    # ── service / port detection ──────────────────────────────────────
+    dst_port = _to_int(d.get("dstport") or d.get("dst_port"), 0)
+    service_label = "NA"
+    threat_family = "na"
+    action = "na"
+    proto = "tcp"
+
+    if "sshd" in msg or dec == "sshd":
+        dst_port = dst_port or 22
+        service_label = "SSH"
+        threat_family = "auth"
+        action = "allowed" if auth_result == 1 else ("blocked" if auth_result == 0 else "na")
+
+    elif "sudo" in msg or dec == "sudo":
+        service_label = "NA"
+        threat_family = "privilege_escalation"
+        action = "blocked" if "command not allowed" in msg or "not in sudoers" in msg else "allowed"
+
+    elif "pam_unix" in msg or dec.startswith("pam"):
+        service_label = "NA"
+        threat_family = "auth"
+        action = "allowed" if auth_result == 1 else ("blocked" if auth_result == 0 else "na")
+
+    elif "ufw" in msg or "iptables" in msg or ("kernel" in dec and "block" in msg):
+        proto = "udp" if "proto=udp" in msg or "udp" in msg else "tcp"
+        # Parse UFW dst port
+        import re
+        m = re.search(r"dpt[=:](\d+)", msg)
+        if m:
+            dst_port = int(m.group(1))
+        action = "blocked" if "block" in msg or "drop" in msg else "allowed"
+        service_label = _norm_service(dst_port, "")
+        threat_family = "firewall"
+
+    elif "nginx" in msg or "apache" in msg or dec in ("nginx", "apache"):
+        dst_port = dst_port or 80
+        service_label = "HTTP"
+        threat_family = "web"
+        # HTTP status code based action
+        import re
+        m = re.search(r'" (\d{3}) ', msg)
+        if m:
+            code = int(m.group(1))
+            action = "blocked" if code >= 400 else "allowed"
+        else:
+            action = "na"
+
+    elif "dpkg" in msg or dec == "dpkg":
+        service_label = "NA"
+        threat_family = "package_install"
+        action = "allowed"
+
+    elif "systemd" in msg or dec == "systemd":
+        service_label = "NA"
+        threat_family = "service_event"
+        action = "blocked" if any(k in msg for k in ["failed", "killed", "error"]) else "allowed"
+
+    # ── severity_ord from rule groups ────────────────────────────────
+    CRITICAL_GROUPS = {"exploit_attempt", "brute_force", "web_attack",
+                       "privilege_escalation", "high_severity", "attack"}
+    HIGH_GROUPS     = {"authentication_failed", "recon", "tool_install",
+                       "lateral_movement", "c2", "data_exfiltration"}
+    MED_GROUPS      = {"authentication_success", "ids", "ips", "syscheck",
+                       "config_change", "firewall_drop"}
+
+    if CRITICAL_GROUPS & set(groups) or rule_level >= 12:
+        severity_ord = 3
+    elif HIGH_GROUPS & set(groups) or rule_level >= 8:
+        severity_ord = 2
+    elif MED_GROUPS & set(groups) or rule_level >= 6:
+        severity_ord = 1
+    else:
+        severity_ord = 0
+
     return {
-        "src_ip": "",
-        "dst_ip": "",
-        "src_port": 0,
-        "dst_port": 22 if "sshd" in msg else 0,
-        "proto": "tcp",
-        "bytes_sent": 0,
-        "bytes_recv": 0,
-        "duration_sec": 0,
-        "rule_level": _to_int((alert.get("rule", {}) or {}).get("level"), 0),
-        "severity_ord": 0,
-        "action": "na",
-        "threat_family": "auth" if "sshd" in msg else "na",
-        "service_label": "SSH" if "sshd" in msg else "NA",
-        "user": "",
-        "host": (alert.get("agent", {}) or {}).get("name", ""),
-        "platform_source": "linux",
-        "auth_result": auth_result,
-        "logon_type": "na",
+        "src_ip":         src_ip,
+        "dst_ip":         d.get("dstip") or "",
+        "src_port":       _to_int(d.get("srcport"), 0),
+        "dst_port":       dst_port,
+        "proto":          proto,
+        "bytes_sent":     0,
+        "bytes_recv":     0,
+        "duration_sec":   0,
+        "rule_level":     rule_level,
+        "severity_ord":   severity_ord,
+        "action":         action,
+        "threat_family":  threat_family,
+        "service_label":  service_label,
+        "user":           d.get("user") or d.get("srcuser") or "",
+        "host":           (alert.get("agent", {}) or {}).get("name", ""),
+        "platform_source":"linux",
+        "auth_result":    auth_result,
+        "logon_type":     "na",
     }
 
 def _map_openstack(alert: Dict[str, Any]) -> Dict[str, Any]:

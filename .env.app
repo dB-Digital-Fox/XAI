@@ -5,7 +5,7 @@ STORAGE_MODE=local
 # If you later switch to OpenSearch, fill these:
 OPENSEARCH_HOST=localhost
 OPENSEARCH_PORT=9200
-OPENSEARCH_INDEX=wazuh-explain-v2
+OPENSEARCH_INDEX=wazuh-explain-v3
 OPENSEARCH_INDEX_FEEDBACK=explain-feedback-v2
 OPENSEARCH_SSL_VERIFY=false
 

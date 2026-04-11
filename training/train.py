@@ -62,56 +62,128 @@ def _to_int(x, default=0):
 
 def weak_signals(alert: dict) -> float:
     """
-    Produce a crude 0..1 'weak risk' score from interpretable signals.
-    Tune weights/thresholds as needed for your data.
+    Wazuh-aware weak risk score covering both:
+      - FortiGate/network logs  (data.severity, data.sentbyte, data.subtype)
+      - Wazuh syslog/journald   (rule.level, rule.groups, full_log keywords)
+    Returns 0..1.
     """
-    d = alert.get("data", {}) or {}
-    r = alert.get("rule", {}) or {}
+    d    = alert.get("data", {}) or {}
+    r    = alert.get("rule", {}) or {}
+    full = (alert.get("full_log", "") or "").lower()
+    groups = [g.lower() for g in (r.get("groups", []) or [])]
+    desc   = (r.get("description", "") or "").lower()
 
-    lvl      = _to_int(r.get("level"), 0)
-    sev      = (d.get("severity") or "").lower()
-    apprisk  = (d.get("apprisk") or "").lower()
-    dstport  = _to_int(d.get("dstport"), 0)
-    sent     = _to_int(d.get("sentbyte"), 0)
-    rcvd     = _to_int(d.get("rcvdbyte"), 0)
-    dur      = _to_int(d.get("duration"), 0)
-    action   = (d.get("action") or "").lower()
-    subtype  = (d.get("subtype") or "").lower()
+    lvl     = _to_int(r.get("level"), 0)
+    sev     = (d.get("severity") or "").lower()
+    apprisk = (d.get("apprisk") or "").lower()
+    dstport = _to_int(d.get("dstport"), 0)
+    sent    = _to_int(d.get("sentbyte"), 0)
+    rcvd    = _to_int(d.get("rcvdbyte"), 0)
+    dur     = _to_int(d.get("duration"), 0)
+    action  = (d.get("action") or "").lower()
+    subtype = (d.get("subtype") or "").lower()
+    attack  = (d.get("attack") or "").lower()
 
-    bytes_total = sent + rcvd
-    sensitive_ports = {22, 3389, 5985, 5986, 445}
+    bytes_total     = sent + rcvd
+    sensitive_ports = {21, 22, 23, 25, 53, 110, 135, 139, 443, 445,
+                       1433, 1521, 3306, 3389, 4444, 5985, 5986, 6379, 9001, 9030}
 
     score = 0.0
-    # rule level
-    if lvl >= 12: score += 0.35
-    elif lvl >= 8: score += 0.20
-    elif lvl >= 6: score += 0.08
-    # severity / app risk
+
+    # 1. Wazuh rule level — primary signal for ALL log types
+    if   lvl >= 15: score += 0.60
+    elif lvl >= 12: score += 0.45
+    elif lvl >= 10: score += 0.30
+    elif lvl >= 8:  score += 0.20
+    elif lvl >= 6:  score += 0.10
+    elif lvl >= 4:  score += 0.04
+
+    # 2. Wazuh rule groups
+    CRITICAL_GROUPS = {
+        "authentication_failed", "brute_force", "exploit_attempt",
+        "web_attack", "privilege_escalation", "lfi", "data_exfiltration",
+        "c2", "tool_install", "lateral_movement", "recon",
+        "attack", "intrusion_detection", "high_severity",
+    }
+    MEDIUM_GROUPS = {
+        "authentication_success", "firewall_drop", "ids", "ips",
+        "syscheck", "config_change", "vpn_anomaly",
+    }
+    matched_critical = CRITICAL_GROUPS & set(groups)
+    matched_medium   = MEDIUM_GROUPS   & set(groups)
+    if matched_critical:
+        score += 0.30 * min(len(matched_critical), 2)
+    if matched_medium:
+        score += 0.10 * min(len(matched_medium), 2)
+
+    # 3. Rule description / full_log keywords
+    CRITICAL_DESC = [
+        "brute force", "exploit", "privilege escalat", "web shell",
+        "path traversal", "sql inject", "scanner", "attack", "malware",
+        "rootkit", "ransomware", "reverse shell", "c2", "tor", "exfiltrat",
+    ]
+    MEDIUM_DESC = [
+        "authentication fail", "login fail", "invalid user",
+        "sudo", "permission denied", "blocked", "dropped",
+        "configuration changed", "package install",
+    ]
+    for kw in CRITICAL_DESC:
+        if kw in desc or kw in full:
+            score += 0.20
+            break
+    for kw in MEDIUM_DESC:
+        if kw in desc or kw in full:
+            score += 0.08
+            break
+
+    # 4. FortiGate severity / apprisk
     if sev == "critical": score += 0.35
-    elif sev == "high":  score += 0.25
-    elif sev == "medium":score += 0.10
+    elif sev == "high":   score += 0.25
+    elif sev == "medium": score += 0.10
     if apprisk in {"high", "elevated"}: score += 0.20
-    # services/ports
+
+    # 5. Known attack tool / CVE signatures
+    ATTACK_KEYWORDS = [
+        "cve-", "log4shell", "shellshock", "heartbleed", "eternalblue",
+        "mimikatz", "meterpreter", "empire", "cobalt", "metasploit",
+        "nmap", "sqlmap", "nikto", "hydra", "masscan",
+    ]
+    for kw in ATTACK_KEYWORDS:
+        if kw in full or kw in attack:
+            score += 0.25
+            break
+
+    # 6. Sensitive ports
     if dstport in sensitive_ports:
-        score += 0.15
-        if action != "dropped":
+        score += 0.12
+        if action not in ("dropped", "denied", "blocked", "reset"):
             score += 0.10
-    # volume / time
+
+    # 7. Volume / duration (FortiGate traffic)
     if bytes_total > 5_000_000: score += 0.25
     elif bytes_total > 1_000_000: score += 0.10
     if dur > 7200: score += 0.20
     elif dur > 1800: score += 0.10
-    # IPS categories
-    if subtype in {"malware"}: score += 0.30
-    elif subtype in {"ips", "ids"}: score += 0.08
+
+    # 8. IPS subtype
+    if subtype == "malware":         score += 0.30
+    elif subtype in {"ips", "ids"}:  score += 0.10
 
     return min(score, 1.0)
 
-def weak_label_and_weight(alert: dict, low: float = 0.15, high: float = 0.4, grey_weight: float = 0.35) -> tuple[int, float]:
+def weak_label_and_weight(
+    alert: dict,
+    low: float = 0.12,        # was 0.15 — lower floor catches more syslog events
+    high: float = 0.30,       # was 0.40 — easier to reach strong positive
+    grey_weight: float = 0.50 # was 0.35 — more influence from grey zone
+) -> tuple[int, float]:
     """
-    - risk >= high      → strong positive (label=1, weight=1.0)
-    - risk <= low       → clear negative (label=0, weight=1.0)
-    - low < risk < high → grey-positive (label=1, weight=grey_weight)
+    Thresholds tuned for mixed Wazuh data (syslog + FortiGate):
+      risk >= 0.30  → strong positive  (label=1, weight=1.0)
+      risk <= 0.12  → clear negative   (label=0, weight=1.0)
+      0.12 < risk < 0.30 → grey zone  (label=1, weight=0.50)
+
+    Level-6+ syslog events now reliably reach label=1.
     """
     r = weak_signals(alert)
     if r >= high:
@@ -230,9 +302,11 @@ def main():
     print("[eval] AUPRC (Average Precision):", ap)
 
     # Choose threshold by top-K rate (e.g., flag top 1% as suspicious)
-    thr = np.quantile(proba, 0.995)
+    thr_top1 = np.quantile(proba, 0.995)
+    thr = 0.5
     y_hat = (proba >= thr).astype(int)
-    print("[eval] Threshold (top 1%):", thr)
+    print("[eval] Threshold (0.5 default):", thr)
+    print("[eval] Threshold (top 1% reference only):", thr_top1)
     print(classification_report(y_te, y_hat, digits=3, zero_division=0))
 
     print(classification_report(y_te, cal.predict(X_te)))

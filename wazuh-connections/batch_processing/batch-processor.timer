@@ -1,0 +1,58 @@
+# ── batch-processor.service ───────────────────────────────────────────────────
+# Place at: /etc/systemd/system/batch-processor.service
+
+[Unit]
+Description=Wazuh XAI Batch Processor (single run)
+After=wazuh-manager.service network.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/usr/bin/python3 /opt/wazuh-xai-bridge/batch_processor.py --window 10 --min-level 1
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=xai-batch
+StateDirectory=xai-batches
+
+
+# ── batch-processor.timer ─────────────────────────────────────────────────────
+# Place at: /etc/systemd/system/batch-processor.timer
+
+[Unit]
+Description=Run Wazuh XAI Batch Processor every 10 minutes
+Requires=batch-processor.service
+
+[Timer]
+OnBootSec=2min          # first run 2min after boot
+OnUnitActiveSec=10min   # then every 10min
+AccuracySec=30s         # allow 30s jitter (avoids thundering herd)
+Persistent=true         # run missed jobs if system was down
+
+[Install]
+WantedBy=timers.target
+
+
+# ── Install commands ──────────────────────────────────────────────────────────
+# Split the two units into separate files then:
+#
+# sudo cp batch-processor.service /etc/systemd/system/
+# sudo cp batch-processor.timer   /etc/systemd/system/
+# sudo systemctl daemon-reload
+# sudo systemctl enable --now batch-processor.timer
+#
+# Check timer status:
+# sudo systemctl status batch-processor.timer
+# sudo systemctl list-timers batch-processor.timer
+#
+# Watch live:
+# sudo journalctl -fu xai-batch
+#
+# Manual one-shot run:
+# sudo systemctl start batch-processor.service
+
+
+# ── Cron alternative (simpler) ────────────────────────────────────────────────
+# Add to /etc/cron.d/xai-batch:
+#
+# */10 * * * * root /usr/bin/python3 /opt/wazuh-xai-bridge/batch_processor.py \
+#   --window 10 --min-level 1 >> /var/log/xai-batch.log 2>&1

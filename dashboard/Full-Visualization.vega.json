@@ -1,40 +1,131 @@
 {
   "$schema": "https://vega.github.io/schema/vega/v5.json",
-  "autosize": { "type": "none", "contains": "padding" },
+  "autosize": {
+    "type": "none",
+    "contains": "padding"
+  },
   "width": 1920,
   "height": 1000,
-  "padding": 18,
-
+  "padding": 16,
   "data": [
     {
       "name": "alerts",
       "url": {
         "%context%": true,
-        "index": "wazuh-explain-v1",
+        "index": "wazuh-xai-v3",
         "body": {
-          "size": 15,
-          "sort": [{ "timestamp": { "order": "desc" } }],
+          "size": 200,
+          "sort": [
+            {
+              "timestamp": {
+                "order": "desc"
+              }
+            }
+          ],
           "_source": [
             "@timestamp",
             "timestamp",
+            "@ingested_at",
             "doc_id",
             "predicted_score",
             "predicted_label",
             "reason",
             "recommendation",
-            "top_features"
+            "top_features",
+            "features",
+            "alert",
+            "alert.id",
+            "alert.timestamp",
+            "alert.agent.id",
+            "alert.agent.name",
+            "alert.rule.id",
+            "alert.rule.level",
+            "alert.rule.description",
+            "alert.rule.groups",
+            "alert.data.action",
+            "alert.data.srcip",
+            "alert.data.dstip",
+            "alert.data.dstport",
+            "alert.data.service",
+            "alert.data.proto",
+            "alert.data.severity",
+            "alert.data.subtype",
+            "alert.full_log",
+            "alert.location",
+            "alert.decoder.name"
           ]
         }
       },
-      "format": { "property": "hits.hits" },
+      "format": {
+        "property": "hits.hits"
+      },
       "transform": [
         {
           "type": "formula",
           "as": "ts",
           "expr": "datum._source['@timestamp'] ? datum._source['@timestamp'] : datum._source['timestamp']"
         },
-        { "type": "collect", "sort": { "field": "ts", "order": "descending" } },
-        { "type": "window", "ops": ["row_number"], "as": ["rank"] }
+        {
+          "type": "collect",
+          "sort": {
+            "field": "ts",
+            "order": "descending"
+          }
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "rank"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "ts_date",
+          "expr": "datum.ts ? toDate(datum.ts) : null"
+        },
+        {
+          "type": "formula",
+          "as": "score",
+          "expr": "isValid(datum._source.predicted_score) ? toNumber(datum._source.predicted_score) : 0"
+        },
+        {
+          "type": "formula",
+          "as": "score_pct",
+          "expr": "round(datum.score * 1000) / 10"
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum._source.predicted_label ? datum._source.predicted_label : 'N/A'"
+        },
+        {
+          "type": "formula",
+          "as": "agent",
+          "expr": "datum._source.alert && datum._source.alert.agent && datum._source.alert.agent.name ? datum._source.alert.agent.name : ''"
+        },
+        {
+          "type": "formula",
+          "as": "rule_desc",
+          "expr": "datum._source.alert && datum._source.alert.rule && datum._source.alert.rule.description ? datum._source.alert.rule.description : ''"
+        },
+        {
+          "type": "formula",
+          "as": "snippet",
+          "expr": "datum.rule_desc ? datum.rule_desc : (datum._source.reason ? datum._source.reason : 'No description')"
+        }
+      ]
+    },
+    {
+      "name": "paged_alerts",
+      "source": "alerts",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.rank > ((page-1)*pageSize) && datum.rank <= (page*pageSize)"
+        }
       ]
     },
     {
@@ -50,449 +141,1044 @@
           "as": "tfArr",
           "expr": "isValid(datum._source.top_features) ? datum._source.top_features : []"
         },
-        { "type": "flatten", "fields": ["tfArr"], "as": ["tf"] },
+        {
+          "type": "flatten",
+          "fields": [
+            "tfArr"
+          ],
+          "as": [
+            "tf"
+          ]
+        },
         {
           "type": "filter",
           "expr": "isValid(datum.tf) && isValid(datum.tf.feature) && isValid(datum.tf.impact)"
         },
-        { "type": "formula", "as": "feature", "expr": "datum.tf.feature" },
-        { "type": "formula", "as": "impact", "expr": "toNumber(datum.tf.impact)" },
+        {
+          "type": "formula",
+          "as": "feature",
+          "expr": "datum.tf.feature"
+        },
+        {
+          "type": "formula",
+          "as": "impact",
+          "expr": "toNumber(datum.tf.impact)"
+        },
         {
           "type": "formula",
           "as": "value",
           "expr": "isValid(datum.tf.value) ? toNumber(datum.tf.value) : 0"
         },
-        { "type": "formula", "as": "absImpact", "expr": "abs(datum.impact)" },
-        { "type": "collect", "sort": { "field": "absImpact", "order": "descending" } },
-        { "type": "window", "ops": ["row_number"], "as": ["pos"] },
-        { "type": "filter", "expr": "datum.pos <= 10" }
+        {
+          "type": "formula",
+          "as": "absImpact",
+          "expr": "abs(datum.impact)"
+        },
+        {
+          "type": "collect",
+          "sort": {
+            "field": "absImpact",
+            "order": "descending"
+          }
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "row"
+          ]
+        },
+        {
+          "type": "filter",
+          "expr": "datum.row <= 12"
+        },
+        {
+          "type": "formula",
+          "as": "lineText",
+          "expr": "datum.row + '. ' + datum.feature + ' | value=' + format(datum.value, '.3f') + ' | impact=' + format(datum.impact, '.4f')"
+        }
       ]
     },
     {
-      "name": "shap_stats",
-      "source": "selected_top",
+      "name": "alert_summary_rows",
+      "values": [
+        {}
+      ],
       "transform": [
-        { "type": "aggregate", "fields": ["absImpact"], "ops": ["max"], "as": ["maxAbs"] }
+        {
+          "type": "formula",
+          "as": "rows",
+          "expr": "[['Rule', sel_rule_desc ? sel_rule_desc : '—'], ['Agent', sel_agent_name ? sel_agent_name : '—'], ['Decoder', sel_decoder ? sel_decoder : '—'], ['Location', sel_location ? sel_location : '—'], ['Rule ID', sel_rule_id ? sel_rule_id : '—'], ['Level', sel_rule_level ? sel_rule_level : '—'], ['Src IP', sel_srcip ? sel_srcip : '—'], ['Dst IP', sel_dstip ? sel_dstip : '—'], ['Service', sel_service ? sel_service : '—'], ['Port', sel_dstport ? sel_dstport : '—'], ['Action', sel_action ? sel_action : '—'], ['Severity', sel_severity ? sel_severity : '—']]"
+        },
+        {
+          "type": "flatten",
+          "fields": [
+            "rows"
+          ],
+          "as": [
+            "row"
+          ]
+        },
+        {
+          "type": "formula",
+          "as": "label",
+          "expr": "datum.row[0]"
+        },
+        {
+          "type": "formula",
+          "as": "val",
+          "expr": "datum.row[1]"
+        },
+        {
+          "type": "filter",
+          "expr": "datum.val && datum.val !== '—'"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "rownum"
+          ]
+        }
       ]
     },
-    { "name": "stars", "values": [1, 2, 3, 4, 5] }
+    {
+      "name": "raw_json_rows",
+      "values": [
+        {}
+      ],
+      "transform": [
+        {
+          "type": "formula",
+          "as": "lines",
+          "expr": "['doc_id:         ' + (sel_doc_id ? sel_doc_id : '—'), 'timestamp:      ' + (sel_ts ? sel_ts : '—'), 'predicted_score: ' + format(sel_score, '.4f'), 'predicted_label: ' + sel_label, '---  alert  ---', 'rule.id:         ' + (sel_rule_id ? sel_rule_id : '—'), 'rule.level:      ' + (sel_rule_level ? sel_rule_level : '—'), 'rule.desc:       ' + (sel_rule_desc ? sel_rule_desc : '—'), 'agent.id:        ' + (sel_agent_id ? sel_agent_id : '—'), 'agent.name:      ' + (sel_agent_name ? sel_agent_name : '—'), 'decoder:         ' + (sel_decoder ? sel_decoder : '—'), 'location:        ' + (sel_location ? sel_location : '—'), '---  data  ---', 'src_ip:          ' + (sel_srcip ? sel_srcip : '—'), 'dst_ip:          ' + (sel_dstip ? sel_dstip : '—'), 'service:         ' + (sel_service ? sel_service : '—'), 'dst_port:        ' + (sel_dstport ? sel_dstport : '—'), 'action:          ' + (sel_action ? sel_action : '—'), 'severity:        ' + (sel_severity ? sel_severity : '—'), 'subtype:         ' + (sel_subtype ? sel_subtype : '—'), 'proto:           ' + (sel_proto ? sel_proto : '—'), '---  xai  ---', 'reason:          ' + (sel_reason ? sel_reason : '—'), 'recommendation:  ' + (sel_recommendation ? sel_recommendation : '—'), '---  full_log  ---', sel_full_log_1, sel_full_log_2, sel_full_log_3, sel_full_log_4]"
+        },
+        {
+          "type": "flatten",
+          "fields": [
+            "lines"
+          ],
+          "as": [
+            "line"
+          ]
+        },
+        {
+          "type": "filter",
+          "expr": "isValid(datum.line) && datum.line !== '' && datum.line !== 'undefined'"
+        },
+        {
+          "type": "window",
+          "ops": [
+            "row_number"
+          ],
+          "as": [
+            "row"
+          ]
+        }
+      ]
+    }
   ],
-
+  "scales": [
+    {
+      "name": "gaugeColor",
+      "type": "linear",
+      "domain": [
+        0,
+        1
+      ],
+      "range": [
+        "#16a34a",
+        "#dc2626"
+      ]
+    }
+  ],
   "signals": [
+    {
+      "name": "pageSize",
+      "value": 15
+    },
+    {
+      "name": "page",
+      "value": 1,
+      "bind": {
+        "input": "range",
+        "min": 1,
+        "max": 10,
+        "step": 1
+      }
+    },
     {
       "name": "active_click",
       "value": null,
-      "on": [{ "events": "@row_rect:click, @row_text:click", "update": "datum._source" }]
+      "on": [
+        {
+          "events": "@row_rect:click, @row_main:click, @row_sub:click",
+          "update": "datum._source"
+        }
+      ]
     },
     {
-      "name": "selected_alert",
-      "update": "length(data('alerts'))>0 ? (active_click ? active_click : data('alerts')[0]._source) : {}"
+      "name": "selected_alert_doc",
+      "update": "length(data('alerts')) > 0 ? (active_click ? active_click : data('alerts')[0]._source) : {}"
     },
-    { "name": "doc_id", "update": "selected_alert.doc_id || '—'" },
-    { "name": "score", "update": "selected_alert.predicted_score || 0" },
-    { "name": "label", "update": "selected_alert.predicted_label || 'N/A'" },
-    { "name": "reason", "update": "selected_alert.reason || '—'" },
-    { "name": "recmd", "update": "selected_alert.recommendation || '—'" },
+    {
+      "name": "doc_id",
+      "update": "selected_alert_doc.doc_id ? selected_alert_doc.doc_id : '—'"
+    },
+    {
+      "name": "sel_doc_id",
+      "update": "selected_alert_doc.doc_id ? selected_alert_doc.doc_id : '—'"
+    },
     {
       "name": "sel_ts",
-      "update": "selected_alert['@timestamp'] ? selected_alert['@timestamp'] : (selected_alert.timestamp ? selected_alert.timestamp : null)"
-    },
-
-    {
-      "name": "trust",
-      "value": 0,
-      "bind": { "input": "range", "min": 0, "max": 5, "step": 1, "name": "Trust (0–5): " }
+      "update": "selected_alert_doc['@timestamp'] ? selected_alert_doc['@timestamp'] : (selected_alert_doc.timestamp ? selected_alert_doc.timestamp : '—')"
     },
     {
-      "name": "override",
-      "value": false,
-      "bind": { "input": "checkbox", "name": "Override decision" }
+      "name": "sel_score",
+      "update": "isValid(selected_alert_doc.predicted_score) ? toNumber(selected_alert_doc.predicted_score) : 0"
     },
     {
-      "name": "openedAt",
-      "value": 0,
-      "on": [{ "events": { "signal": "doc_id" }, "update": "now()" }]
+      "name": "sel_score_pct",
+      "update": "round(sel_score * 1000) / 10"
     },
     {
-      "name": "decisionMs",
-      "update": "openedAt>0 ? max(0, floor((now()-openedAt))) : 0"
+      "name": "sel_label",
+      "update": "selected_alert_doc.predicted_label ? selected_alert_doc.predicted_label : 'N/A'"
     },
     {
-      "name": "maxAbs",
-      "update": "length(data('shap_stats'))>0 && isValid(data('shap_stats')[0].maxAbs) ? data('shap_stats')[0].maxAbs : 1"
+      "name": "sel_reason",
+      "update": "selected_alert_doc.reason ? selected_alert_doc.reason : '—'"
     },
-
-    { "name": "colBg", "value": "#ffffff" },
-    { "name": "colPanel", "value": "#f9fafb" },
-    { "name": "colStroke", "value": "#e5e7eb" },
-    { "name": "colPrimary", "value": "#2563eb" },
-    { "name": "colPrimarySoft", "value": "#dbeafe" },
-    { "name": "colText", "value": "#111827" },
-    { "name": "colMuted", "value": "#6b7280" },
-    { "name": "colGood", "value": "#16a34a" },
-    { "name": "colBad", "value": "#dc2626" },
-
     {
-      "name": "feedbackURL",
-      "update": "'http://localhost:8080/feedback?alert_id=' + doc_id + '&trust=' + trust + '&override=' + (override?1:0) + '&decision_ms=' + decisionMs"
+      "name": "sel_recommendation",
+      "update": "selected_alert_doc.recommendation ? selected_alert_doc.recommendation : '—'"
+    },
+    {
+      "name": "sel_rule_desc",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.rule && selected_alert_doc.alert.rule.description ? selected_alert_doc.alert.rule.description : '—'"
+    },
+    {
+      "name": "sel_rule_id",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.rule && selected_alert_doc.alert.rule.id ? selected_alert_doc.alert.rule.id : '—'"
+    },
+    {
+      "name": "sel_rule_level",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.rule && selected_alert_doc.alert.rule.level ? toString(selected_alert_doc.alert.rule.level) : '—'"
+    },
+    {
+      "name": "sel_agent_id",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.agent && selected_alert_doc.alert.agent.id ? selected_alert_doc.alert.agent.id : '—'"
+    },
+    {
+      "name": "sel_agent_name",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.agent && selected_alert_doc.alert.agent.name ? selected_alert_doc.alert.agent.name : '—'"
+    },
+    {
+      "name": "sel_decoder",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.decoder && selected_alert_doc.alert.decoder.name ? selected_alert_doc.alert.decoder.name : '—'"
+    },
+    {
+      "name": "sel_location",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.location ? selected_alert_doc.alert.location : '—'"
+    },
+    {
+      "name": "sel_srcip",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.srcip ? selected_alert_doc.alert.data.srcip : '—'"
+    },
+    {
+      "name": "sel_dstip",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.dstip ? selected_alert_doc.alert.data.dstip : '—'"
+    },
+    {
+      "name": "sel_service",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.service ? selected_alert_doc.alert.data.service : '—'"
+    },
+    {
+      "name": "sel_dstport",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.dstport ? selected_alert_doc.alert.data.dstport : '—'"
+    },
+    {
+      "name": "sel_action",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.action ? selected_alert_doc.alert.data.action : '—'"
+    },
+    {
+      "name": "sel_severity",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.severity ? selected_alert_doc.alert.data.severity : '—'"
+    },
+    {
+      "name": "sel_subtype",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.subtype ? selected_alert_doc.alert.data.subtype : '—'"
+    },
+    {
+      "name": "sel_proto",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.data && selected_alert_doc.alert.data.proto ? selected_alert_doc.alert.data.proto : '—'"
+    },
+    {
+      "name": "sel_full_log_raw",
+      "update": "selected_alert_doc.alert && selected_alert_doc.alert.full_log ? selected_alert_doc.alert.full_log : ''"
+    },
+    {
+      "name": "sel_full_log_1",
+      "update": "slice(sel_full_log_raw, 0, 72)"
+    },
+    {
+      "name": "sel_full_log_2",
+      "update": "length(sel_full_log_raw) > 72 ? slice(sel_full_log_raw, 72, 144) : ''"
+    },
+    {
+      "name": "sel_full_log_3",
+      "update": "length(sel_full_log_raw) > 144 ? slice(sel_full_log_raw, 144, 216) : ''"
+    },
+    {
+      "name": "sel_full_log_4",
+      "update": "length(sel_full_log_raw) > 216 ? slice(sel_full_log_raw, 216, 288) : ''"
     }
   ],
-
   "marks": [
     {
-      "type": "rect",
+      "type": "group",
       "encode": {
         "enter": {
-          "x": { "value": 0 },
-          "y": { "value": 0 },
-          "width": { "value": 450 },
-          "height": { "signal": "height" },
-          "fill": { "signal": "colPanel" },
-          "stroke": { "signal": "colStroke" },
-          "cornerRadius": { "value": 10 }
-        }
-      }
-    },
-    {
-      "type": "rect",
-      "encode": {
-        "enter": {
-          "x": { "value": 468 },
-          "y": { "value": 0 },
-          "width": { "signal": "width - 468" },
-          "height": { "signal": "height" },
-          "fill": { "signal": "colBg" },
-          "stroke": { "signal": "colStroke" },
-          "cornerRadius": { "value": 10 }
-        }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 18 },
-          "y": { "value": 22 },
-          "fontSize": { "value": 15 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colText" },
-          "text": { "value": "Latest Alerts (score, label)" }
-        }
-      }
-    },
-
-    {
-      "name": "row_rect",
-      "type": "rect",
-      "from": { "data": "alerts" },
-      "encode": {
-        "enter": {
-          "x": { "value": 14 },
-          "width": { "value": 422 },
-          "height": { "value": 36 },
-          "cursor": { "value": "pointer" },
-          "cornerRadius": { "value": 8 }
-        },
-        "update": {
-          "y": { "signal": "38 + (datum.rank-1)*42" },
-          "fill": { "signal": "datum._source.doc_id===doc_id ? colPrimarySoft : colBg" },
-          "stroke": { "signal": "datum._source.doc_id===doc_id ? colPrimary : colStroke" }
-        },
-        "hover": { "fill": { "value": "#eef2ff" } }
-      }
-    },
-    {
-      "name": "row_text",
-      "type": "text",
-      "from": { "data": "alerts" },
-      "encode": {
-        "enter": {
-          "x": { "value": 26 },
-          "fontSize": { "value": 12 },
-          "fill": { "signal": "colText" }
-        },
-        "update": {
-          "y": { "signal": "60 + (datum.rank-1)*42" },
-          "text": {
-            "signal": "timeFormat(toDate(datum.ts), '%Y-%m-%d %H:%M:%S') + '  ·  ' + format(datum._source.predicted_score, '.3f') + '  ·  ' + (datum._source.predicted_label || 'N/A')"
+          "x": {
+            "value": 16
           },
-          "fontWeight": { "signal": "datum._source.doc_id===doc_id ? 'bold' : 'normal'" }
-        }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 24 },
-          "fontSize": { "value": 12 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colMuted" }
-        },
-        "update": {
-          "text": {
-            "signal": "'Selected ID: ' + (doc_id.length>44 ? slice(doc_id,0,44) + '…' : doc_id)"
+          "y": {
+            "value": 16
+          },
+          "width": {
+            "value": 600
+          },
+          "height": {
+            "value": 968
           }
         }
-      }
-    },
-
-    {
-      "type": "arc",
-      "encode": {
-        "enter": {
-          "x": { "value": 760 },
-          "y": { "value": 140 },
-          "innerRadius": { "value": 70 },
-          "outerRadius": { "value": 115 },
-          "startAngle": { "value": -1.57 },
-          "endAngle": { "value": 1.57 },
-          "fill": { "value": "#e5e7eb" }
-        }
-      }
-    },
-    {
-      "type": "arc",
-      "encode": {
-        "enter": {
-          "x": { "value": 760 },
-          "y": { "value": 140 },
-          "innerRadius": { "value": 70 },
-          "outerRadius": { "value": 115 },
-          "startAngle": { "value": -1.57 }
+      },
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Logs"
+              }
+            }
+          }
         },
-        "update": {
-          "endAngle": { "signal": "-1.57 + (max(0, min(1, score)) * 3.14)" },
-          "fill": { "signal": "score < 0.5 ? colGood : colBad" }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 760 },
-          "y": { "value": 135 },
-          "align": { "value": "center" },
-          "fontSize": { "value": 28 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colText" }
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 470
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#6b7280"
+              }
+            },
+            "update": {
+              "text": {
+                "signal": "'Page ' + page"
+              }
+            }
+          }
         },
-        "update": { "text": { "signal": "format(score, '.3f')" } }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 760 },
-          "y": { "value": 165 },
-          "align": { "value": "center" },
-          "fontSize": { "value": 13 },
-          "fill": { "signal": "colMuted" }
+        {
+          "name": "row_rect",
+          "type": "rect",
+          "from": {
+            "data": "paged_alerts"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "width": {
+                "value": 580
+              },
+              "height": {
+                "value": 48
+              },
+              "cursor": {
+                "value": "pointer"
+              },
+              "cornerRadius": {
+                "value": 6
+              },
+              "stroke": {
+                "value": "#d1d5db"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "40 + ((datum.rank-1) % pageSize)*52"
+              },
+              "fill": {
+                "signal": "datum._source.doc_id === doc_id ? '#e5e7eb' : '#ffffff'"
+              }
+            },
+            "hover": {
+              "fill": {
+                "value": "#f3f4f6"
+              }
+            }
+          }
         },
-        "update": { "text": { "signal": "label" } }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 245 },
-          "fontSize": { "value": 13 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colText" },
-          "text": { "value": "Reason" }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 265 },
-          "fontSize": { "value": 12 },
-          "fill": { "signal": "colText" },
-          "limit": { "value": 760 }
+        {
+          "name": "row_main",
+          "type": "text",
+          "from": {
+            "data": "paged_alerts"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fill": {
+                "value": "#111827"
+              },
+              "cursor": {
+                "value": "pointer"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "56 + ((datum.rank-1) % pageSize)*52"
+              },
+              "fontWeight": {
+                "signal": "datum._source.doc_id === doc_id ? 'bold' : 'normal'"
+              },
+              "text": {
+                "signal": "(datum.ts_date ? timeFormat(datum.ts_date, '%Y-%m-%d %H:%M:%S') : '—') + '  ·  ' + format(datum.score, '.3f') + '  ·  ' + datum.label + (datum.agent ? ('  ·  ' + datum.agent) : '')"
+              }
+            }
+          }
         },
-        "update": { "text": { "signal": "reason" } }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 315 },
-          "fontSize": { "value": 13 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colText" },
-          "text": { "value": "Recommendation" }
+        {
+          "name": "row_sub",
+          "type": "text",
+          "from": {
+            "data": "paged_alerts"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "cursor": {
+                "value": "pointer"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "76 + ((datum.rank-1) % pageSize)*52"
+              },
+              "text": {
+                "signal": "truncate(datum.snippet, 72)"
+              }
+            }
+          }
         }
-      }
+      ]
     },
     {
-      "type": "text",
+      "type": "group",
       "encode": {
         "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 335 },
-          "fontSize": { "value": 12 },
-          "fill": { "signal": "colText" },
-          "limit": { "value": 760 }
-        },
-        "update": { "text": { "signal": "recmd" } }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 385 },
-          "fontSize": { "value": 13 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colText" },
-          "text": { "value": "Top Feature Contributions (SHAP)" }
-        }
-      }
-    },
-    {
-      "type": "rect",
-      "from": { "data": "selected_top" },
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "height": { "value": 18 },
-          "cornerRadius": { "value": 6 }
-        },
-        "update": {
-          "y": { "signal": "405 + (datum.pos-1)*26" },
-          "width": { "signal": "maxAbs > 0 ? (abs(datum.impact)/maxAbs)*360 : 0" },
-          "fill": { "signal": "datum.impact >= 0 ? colBad : colGood" }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "from": { "data": "selected_top" },
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "dx": { "value": 8 },
-          "fontSize": { "value": 12 },
-          "fill": { "signal": "colText" }
-        },
-        "update": {
-          "y": { "signal": "419 + (datum.pos-1)*26" },
-          "text": { "signal": "datum.feature" }
-        }
-      }
-    },
-
-    {
-      "type": "rect",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 668 },
-          "width": { "value": 760 },
-          "height": { "value": 1 },
-          "fill": { "signal": "colStroke" }
-        }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 492 },
-          "y": { "value": 690 },
-          "fontSize": { "value": 13 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colText" },
-          "text": { "value": "Feedback (set trust score, then submit)" }
-        }
-      }
-    },
-
-    {
-      "type": "text",
-      "from": { "data": "stars" },
-      "encode": {
-        "enter": {
-          "x": { "signal": "492 + (datum-1)*26" },
-          "y": { "value": 708 },
-          "fontSize": { "value": 16 },
-          "fontWeight": { "value": "bold" },
-          "cursor": { "value": "pointer" }
-        },
-        "update": {
-          "fill": { "signal": "datum <= trust ? '#f59e0b' : '#e5e7eb'" },
-          "text": { "signal": "datum <= trust ? '★' : '☆'" }
+          "x": {
+            "value": 640
+          },
+          "y": {
+            "value": 16
+          },
+          "width": {
+            "value": 760
+          },
+          "height": {
+            "value": 968
+          }
         }
       },
-      "on": [{ "events": "click", "update": "trust = datum" }]
+      "marks": [
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Features & Scoring"
+              }
+            }
+          }
+        },
+        {
+          "type": "group",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 36
+              }
+            }
+          },
+          "marks": [
+            {
+              "type": "arc",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 90
+                  },
+                  "y": {
+                    "value": 90
+                  },
+                  "innerRadius": {
+                    "value": 54
+                  },
+                  "outerRadius": {
+                    "value": 74
+                  },
+                  "startAngle": {
+                    "value": -1.5707963267948966
+                  },
+                  "endAngle": {
+                    "value": 1.5707963267948966
+                  },
+                  "fill": {
+                    "value": "#e5e7eb"
+                  }
+                }
+              }
+            },
+            {
+              "type": "arc",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 90
+                  },
+                  "y": {
+                    "value": 90
+                  },
+                  "innerRadius": {
+                    "value": 54
+                  },
+                  "outerRadius": {
+                    "value": 74
+                  },
+                  "startAngle": {
+                    "value": -1.5707963267948966
+                  }
+                },
+                "update": {
+                  "endAngle": {
+                    "signal": "-1.5707963267948966 + (sel_score * 3.141592653589793)"
+                  },
+                  "fill": {
+                    "scale": "gaugeColor",
+                    "signal": "sel_score"
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 90
+                  },
+                  "y": {
+                    "value": 104
+                  },
+                  "align": {
+                    "value": "center"
+                  },
+                  "fontSize": {
+                    "value": 18
+                  },
+                  "fill": {
+                    "value": "#111827"
+                  }
+                },
+                "update": {
+                  "text": {
+                    "signal": "format(sel_score_pct, '.1f') + '%'"
+                  }
+                }
+              }
+            },
+            {
+              "type": "text",
+              "encode": {
+                "enter": {
+                  "x": {
+                    "value": 190
+                  },
+                  "y": {
+                    "value": 70
+                  },
+                  "fontSize": {
+                    "value": 14
+                  },
+                  "fill": {
+                    "value": "#374151"
+                  }
+                },
+                "update": {
+                  "text": {
+                    "signal": "sel_label"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "y": {
+                "value": 160
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Alert summary"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "data": "alert_summary_rows"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "fontWeight": {
+                "value": "bold"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (datum.rownum - 1) * 20"
+              },
+              "text": {
+                "field": "label"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "data": "alert_summary_rows"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 110
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#111827"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (datum.rownum - 1) * 20"
+              },
+              "text": {
+                "signal": "truncate(datum.val, 70)"
+              }
+            }
+          }
+        },
+        {
+          "type": "rule",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "x2": {
+                "value": 740
+              },
+              "stroke": {
+                "value": "#e5e7eb"
+              },
+              "strokeWidth": {
+                "value": 1
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 16"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Reason"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 32"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#111827"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 50"
+              },
+              "text": {
+                "signal": "truncate(sel_reason, 90)"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Recommendation"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 72"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#111827"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 90"
+              },
+              "text": {
+                "signal": "truncate(sel_recommendation, 90)"
+              }
+            }
+          }
+        },
+        {
+          "type": "rule",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "x2": {
+                "value": 740
+              },
+              "stroke": {
+                "value": "#e5e7eb"
+              },
+              "strokeWidth": {
+                "value": 1
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 106"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 12
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "fill": {
+                "value": "#6b7280"
+              },
+              "text": {
+                "value": "Top feature contributions"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 124"
+              }
+            }
+          }
+        },
+        {
+          "type": "text",
+          "from": {
+            "data": "selected_top"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#111827"
+              },
+              "font": {
+                "value": "monospace"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "178 + (length(data('alert_summary_rows'))) * 20 + 142 + (datum.row - 1) * 18"
+              },
+              "text": {
+                "field": "lineText"
+              }
+            }
+          }
+        }
+      ]
     },
-
     {
-      "type": "text",
+      "type": "group",
       "encode": {
         "enter": {
-          "x": { "value": 635 },
-          "y": { "value": 708 },
-          "fontSize": { "value": 12 },
-          "fill": { "signal": "colMuted" }
-        },
-        "update": {
-          "text": { "signal": "'Trust: ' + trust + '/5  ·  Decision time: ' + format(decisionMs/1000, '.1f') + 's'" }
+          "x": {
+            "value": 1420
+          },
+          "y": {
+            "value": 16
+          },
+          "width": {
+            "value": 484
+          },
+          "height": {
+            "value": 968
+          }
         }
-      }
-    },
-
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 1030 },
-          "y": { "value": 708 },
-          "fontSize": { "value": 12 },
-          "fontWeight": { "value": "bold" },
-          "fill": { "signal": "colPrimary" },
-          "cursor": { "value": "pointer" },
-          "align": { "value": "right" }
+      },
+      "marks": [
+        {
+          "type": "rect",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 32
+              },
+              "width": {
+                "value": 484
+              },
+              "height": {
+                "value": 920
+              },
+              "fill": {
+                "value": "#f9fafb"
+              },
+              "cornerRadius": {
+                "value": 6
+              },
+              "stroke": {
+                "value": "#e5e7eb"
+              }
+            }
+          }
         },
-        "update": {
-          "text": { "value": "Submit feedback →" },
-          "href": { "signal": "feedbackURL" }
-        }
-      }
-    },
-    {
-      "type": "text",
-      "encode": {
-        "enter": {
-          "x": { "value": 1260 },
-          "y": { "value": 708 },
-          "fontSize": { "value": 12 },
-          "fill": { "signal": "colMuted" },
-          "cursor": { "value": "pointer" },
-          "align": { "value": "right" }
+        {
+          "type": "text",
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 0
+              },
+              "y": {
+                "value": 24
+              },
+              "fontSize": {
+                "value": 14
+              },
+              "fontWeight": {
+                "value": "bold"
+              },
+              "text": {
+                "value": "Raw Alert"
+              }
+            }
+          }
         },
-        "update": {
-          "text": { "value": "(API docs)" },
-          "href": { "value": "http://localhost:8080/docs#/default/receive_feedback_feedback_post" }
+        {
+          "type": "text",
+          "from": {
+            "data": "raw_json_rows"
+          },
+          "encode": {
+            "enter": {
+              "x": {
+                "value": 10
+              },
+              "fontSize": {
+                "value": 11
+              },
+              "fill": {
+                "value": "#111827"
+              },
+              "align": {
+                "value": "left"
+              },
+              "font": {
+                "value": "monospace"
+              }
+            },
+            "update": {
+              "y": {
+                "signal": "50 + (datum.row - 1) * 15"
+              },
+              "fill": {
+                "signal": "indexof(datum.line, '---') >= 0 ? '#6b7280' : (indexof(datum.line, 'rule.') >= 0 ? '#1d4ed8' : (indexof(datum.line, 'src_ip') >= 0 || indexof(datum.line, 'dst_ip') >= 0 ? '#b45309' : '#111827'))"
+              },
+              "fontWeight": {
+                "signal": "indexof(datum.line, '---') >= 0 ? 'bold' : 'normal'"
+              },
+              "text": {
+                "field": "line"
+              }
+            }
+          }
         }
-      }
+      ]
     }
   ]
 }

@@ -1,24 +1,15 @@
-# 1. Install dependency
-pip3 install requests urllib3
+# Stop the old OpenSearch bridge if running
+sudo systemctl stop wazuh-xai-bridge
 
-# 2. Copy bridge to a permanent location
-sudo mkdir -p /opt/wazuh-xai-bridge
-sudo cp os_xai_bridge.py /opt/wazuh-xai-bridge/
+# Test with debug on last 10 alerts — check data: and decoder: are populated
+sudo python3 alerts_xai_bridge.py --backfill 10 --dry-run --debug
 
-# 3. Edit OpenSearch credentials at the top of the script
-sudo nano /opt/wazuh-xai-bridge/os_xai_bridge.py
-# Change: OPENSEARCH_PASS = "your-actual-password"
+# Run live, only forward level 3+
+sudo python3 alerts_xai_bridge.py --min-level 3 --debug
 
-# 4. Test it manually first
-python3 /opt/wazuh-xai-bridge/os_xai_bridge.py --dry-run --once
-python3 /opt/wazuh-xai-bridge/os_xai_bridge.py --since 30m --dry-run
-
-# 5. Remove the old integration from ossec.conf
-# Delete the <integration> block, then:
-sudo systemctl restart wazuh-manager
-
-# 6. Install and start the service
-sudo cp wazuh-xai-bridge.service /etc/systemd/system/
+# Install as service
+sudo cp alerts_xai_bridge.py /opt/wazuh-xai-bridge/
+sudo cp alerts-xai-bridge.service /etc/systemd/system/
 sudo systemctl daemon-reload
-sudo systemctl enable --now wazuh-xai-bridge
-sudo journalctl -fu wazuh-xai-bridge
+sudo systemctl enable --now alerts-xai-bridge
+sudo journalctl -fu alerts-xai-bridge
